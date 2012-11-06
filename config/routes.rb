@@ -1,4 +1,6 @@
 RateMyProfessor::Application.routes.draw do
+  resources :students
+
   resources :departments
 
   resources :courses
