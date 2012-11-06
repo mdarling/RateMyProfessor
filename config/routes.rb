@@ -1,4 +1,12 @@
 RateMyProfessor::Application.routes.draw do
+  resources :departments
+
+  resources :courses
+
+  resources :evaluations
+
+  resources :professors
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
