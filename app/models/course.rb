@@ -7,4 +7,6 @@ class Course < ActiveRecord::Base
 
   has_many :evaluations
 
+  has_and_belongs_to_many :students    # foreign keys in an invisible join table
+
 end
