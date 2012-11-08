@@ -1,0 +1,3 @@
+<%= div_for @department do %>
+    <h2><%= link_to_unless_current h(@department.name) %></h2>
+<% end %>
