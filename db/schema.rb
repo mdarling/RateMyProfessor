@@ -56,9 +56,4 @@ ActiveRecord::Schema.define(:version => 20121106015557) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "students_courses", :id => false, :force => true do |t|
-    t.integer "student_id"
-    t.integer "course_id"
-  end
-
 end
