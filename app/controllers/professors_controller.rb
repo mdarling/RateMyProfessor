@@ -40,7 +40,9 @@ class ProfessorsController < ApplicationController
   # POST /professors
   # POST /professors.json
   def create
-    @professor = Professor.new(params[:professor])
+      @department = Department.find(params[:department_id])
+      @professor = Professor.new(params[:professor])
+      @professor.department = @department
 
     respond_to do |format|
       if @professor.save
