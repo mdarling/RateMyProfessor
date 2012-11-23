@@ -3,16 +3,22 @@ RateMyProfessor::Application.routes.draw do
 
   resources :departments do
       resources :professors do
-          resources :courses
+          resources :courses do
+          	resources :evaluation
+          end
       end
   end
 
-  resources :courses
+  resources :courses do
+      resources :evaluations
+  end
 
   resources :evaluations
 
   resources :professors do
-      resources :courses
+      resources :courses do
+      	resources :evaluation
+      end
   end
     
 

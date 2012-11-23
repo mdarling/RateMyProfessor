@@ -25,6 +25,48 @@
   <%= @course.year %>
 </p>
 
+<b>Statistics</b>
+<div id = "statistics">
+    <div class="field">
+    Q1
+    <%= Evaluation.where("course_id = ?", @course.id).average(:q1) %>
+    Q2
+    <%= Evaluation.where("course_id = ?", @course.id).average(:q2) %>
+    Q3
+    <%= Evaluation.where("course_id = ?", @course.id).average(:q2) %>
+    Q4
+    <%= Evaluation.where("course_id = ?", @course.id).average(:q2) %></br>
+    Total number of evaluations:
+    <%= Evaluation.where("course_id = ?", @course.id).count %>
+    
+  </div>
+</div>
+
+<b>Evaluations</b>
+<div id = "evaluations">
+    <%= render :partial => @course.evaluations %>
+</div>
+
+<b>Add evaluation for this Course: </b>
+<%= form_for [@course, Evaluation.new], do |f| %>
+ <div class="field">
+    <%= f.label :q1 %><br />
+    <%= f.number_field :q1 %>
+  </div>
+  <div class="field">
+    <%= f.label :q2 %><br />
+    <%= f.number_field :q2 %>
+  </div>
+  <div class="field">
+    <%= f.label :q3 %><br />
+    <%= f.number_field :q3 %>
+  </div>
+  <div class="field">
+    <%= f.label :q4 %><br />
+    <%= f.text_field :q4 %>
+  </div>
+   <p><%= f.submit "Add Evaluation" %></p>
+ <%end%>
 
 <%= link_to 'Edit', edit_course_path(@course) %> |
 <%= link_to 'Back', professor_path(@course.professor_id)%>
