@@ -1,5 +1,5 @@
 class Course < ActiveRecord::Base
-  attr_accessible :code, :description, :name, :semester, :year
+  attr_accessible :code, :description, :name, :semester, :year, :id
 
   belongs_to :professor    # foreign key - professor_id
 
