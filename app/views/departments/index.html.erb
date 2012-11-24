@@ -1,8 +1,8 @@
-<h1>Listing departments</h1>
+<h1>All departments</h1>
 
 <table>
   <tr>
-    <th>Name</th>
+    <th>Departments</th>
     <th></th>
     <th></th>
     <th></th>
@@ -10,7 +10,7 @@
 
 <% @departments.each do |department| %>
   <tr>
-    <td><%= department.name %></td>
+    <td><%= link_to department.name, department%></td>
     <td><%= link_to 'Show', department %></td>
     <td><%= link_to 'Edit', edit_department_path(department) %></td>
     <td><%= link_to 'Destroy', department, method: :delete, data: { confirm: 'Are you sure?' } %></td>

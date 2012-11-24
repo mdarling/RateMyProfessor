@@ -1,5 +1,5 @@
 <p id="notice"><%= notice %></p>
-
+<h1>Course information</h1>
 <p>
   <b>Code:</b>
   <%= @course.code %>
@@ -28,24 +28,34 @@
 <b>Statistics</b>
 <div id = "statistics">
     <div class="field">
-    Q1
-    <%= Evaluation.where("course_id = ?", @course.id).average(:q1) %>
-    Q2
-    <%= Evaluation.where("course_id = ?", @course.id).average(:q2) %>
-    Q3
-    <%= Evaluation.where("course_id = ?", @course.id).average(:q2) %>
-    Q4
-    <%= Evaluation.where("course_id = ?", @course.id).average(:q2) %></br>
     Total number of evaluations:
-    <%= Evaluation.where("course_id = ?", @course.id).count %>
-    
+    <%= Evaluation.where("course_id = ?", @course.id).count %>  
   </div>
 </div>
 
-<b>Evaluations</b>
+<table>
+  <tr>
+    <th>Q1</th>
+    <th>Q2</th>
+    <th>Q3</th>
+    <th>Q4</th>  
+  </tr>
+
+<tr>
+    <td><%= "%.3f " %Evaluation.where("course_id = ?", @course.id).average(:q1)  %></td>
+    <td><%= "%.3f " %Evaluation.where("course_id = ?", @course.id).average(:q2)  %></td>
+    <td><%= "%.3f " %Evaluation.where("course_id = ?", @course.id).average(:q3) %></td>
+    <td><%= "%.3f " %Evaluation.where("course_id = ?", @course.id).average(:q4) %></td>
+  </tr>
+</table>
+
+<b><%= link_to "view Detail",course_evaluations_path(@course.id) %></b></br>
+
+<!--<b>Evaluations</b>
 <div id = "evaluations">
     <%= render :partial => @course.evaluations %>
-</div>
+</div>-->
+
 
 <b>Add evaluation for this Course: </b>
 <%= form_for [@course, Evaluation.new], do |f| %>
