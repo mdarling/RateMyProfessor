@@ -40,7 +40,9 @@ class EvaluationsController < ApplicationController
   # POST /evaluations
   # POST /evaluations.json
   def create
+    @course = Course.find(params[:course_id])
     @evaluation = Evaluation.new(params[:evaluation])
+    @evaluation.course = @course
 
     respond_to do |format|
       if @evaluation.save
