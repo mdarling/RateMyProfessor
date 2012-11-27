@@ -1,6 +1,8 @@
 class DepartmentsController < ApplicationController
   # GET /departments
   # GET /departments.json
+  before_filter :authenticate_admin!, :only => [:new, :edit, :destroy]
+
   def index
     @departments = Department.all
 

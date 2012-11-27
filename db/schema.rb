@@ -11,8 +11,6 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121117034928) do
-
   create_table "admins", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
     t.string   "encrypted_password",     :default => "", :null => false
@@ -60,6 +58,7 @@ ActiveRecord::Schema.define(:version => 20121117034928) do
     t.string   "q4"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "course_id"
   end
 
   create_table "instructors", :force => true do |t|

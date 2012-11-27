@@ -1,6 +1,10 @@
 class ProfessorsController < ApplicationController
   # GET /professors
   # GET /professors.json
+  before_filter :authenticate_admin!, :only => [:new, :create, :destroy]
+  before_filter :editor, :only => :edit
+
+
   def index
     @professors = Professor.all
 
@@ -40,7 +44,7 @@ class ProfessorsController < ApplicationController
   # POST /professors
   # POST /professors.json
   def create
-      @department = Department.find(params[:department_id])
+      @department = Department.find_by_id(params[:department_id])
       @professor = Professor.new(params[:professor])
       @professor.department = @department
 
@@ -81,5 +85,10 @@ class ProfessorsController < ApplicationController
       format.html { redirect_to professors_url }
       format.json { head :no_content }
     end
+  end
+
+  private
+  def editor
+    :authenticate_admin! || :authenticate_instructor!
   end
 end

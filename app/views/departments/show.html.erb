@@ -10,12 +10,15 @@
     <%= render :partial =>@department.professors%>
 </div>
 
-<%= form_for [@department, Professor.new], do |f| %>
-    <p>
-    <%= f.label :name, "New Professor" %><br />
-    <%= f.text_field :name %>
-    </p>
-    <p><%= f.submit "Add Professor" %></p>
+<% if admin_signed_in? %>
+  <%= form_for Professor.new do |f| %>
+      <p>
+      <%= f.label :name, "New Professor" %><br />
+      <%= f.text_field :name %>
+      </p>
+      <%= f.hidden_field :department_id, value: @department.id %>
+      <p><%= f.submit "Add Professor" %></p>
+  <% end %>
 <% end %>
 
 
