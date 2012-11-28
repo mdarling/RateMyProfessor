@@ -1,25 +1,19 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Q1:</b>
-  <%= @evaluation.q1 %>
-</p>
+<h1><%= @evaluation.name %></h1>
 
-<p>
-  <b>Q2:</b>
-  <%= @evaluation.q2 %>
-</p>
-
-<p>
-  <b>Q3:</b>
-  <%= @evaluation.q3 %>
-</p>
-
-<p>
-  <b>Q4:</b>
-  <%= @evaluation.q4 %>
-</p>
-
+<ol class="questions">
+<% @evaluation.questions.each do |question| %>
+  <li>
+    <%= question.content %>
+    <ol class="answers">
+      <% question.answers.each do |answer| %>
+        <li><%= answer.content %></li>
+      <% end %>
+    </ol>
+  </li>
+<% end %>
+</ol>
 
 <%= link_to 'Edit', edit_evaluation_path(@evaluation) %> |
 <%= link_to 'Back', evaluations_path %>
