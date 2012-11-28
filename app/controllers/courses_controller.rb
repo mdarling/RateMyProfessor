@@ -41,12 +41,14 @@ class CoursesController < ApplicationController
     # POST /courses.json
     def create
         @professor = Professor.find(params[:professor_id])
+        @department = Department.find(@professor.department)
         @course = Course.new(params[:course])
+        @course.department = @department
         @course.professor = @professor
 
         respond_to do |format|
             if @course.save
-                format.html { redirect_to @course, notice: 'Course was successfully created.' }
+                format.html { redirect_to department_course_url(@department,@course), notice: 'Course was successfully created.' }
                 format.json { render json: @course, status: :created, location: @course }
             else
                 format.html { render action: "new" }

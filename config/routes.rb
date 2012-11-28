@@ -1,5 +1,11 @@
 RateMyProfessor::Application.routes.draw do
-  match '/help', to: 'static_pages#hlep'
+  devise_for :instructors
+
+  devise_for :users
+
+  devise_for :admins
+
+  match '/help', to: 'static_pages#help'
 
   resources :students
 
@@ -8,6 +14,9 @@ RateMyProfessor::Application.routes.draw do
           resources :courses do
           	resources :evaluation
           end
+      end
+      resources :courses do
+          resources :evaluations
       end
   end
 
@@ -73,6 +82,7 @@ RateMyProfessor::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
+  # root :to => 'welcome#index'
    root :to => 'static_pages#home'
 
   # See how all your routes lay out with "rake routes"
