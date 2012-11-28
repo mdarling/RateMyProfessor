@@ -2,11 +2,12 @@ class ProfessorsController < ApplicationController
   # GET /professors
   # GET /professors.json
   before_filter :authenticate_admin!, :only => [:new, :create, :destroy]
-  before_filter :editor, :only => :edit
+  before_filter :editor, :only => [:edit, :update]
 
 
   def index
-    @professors = Professor.all
+    @department = Department.find(params[:department_id])
+    @professors = @department.professors.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -44,16 +45,16 @@ class ProfessorsController < ApplicationController
   # POST /professors
   # POST /professors.json
   def create
-      @department = Department.find_by_id(params[:department_id])
-      @professor = Professor.new(params[:professor])
+      @department = Department.find(params[:department_id])
+      @professor = Professor.new(name: params[:professor][:name])
       @professor.department = @department
 
     respond_to do |format|
       if @professor.save
-        format.html { redirect_to @professor, notice: 'Professor was successfully created.' }
+        format.html { redirect_to @department, notice: 'Professor was successfully created.' }
         format.json { render json: @professor, status: :created, location: @professor }
       else
-        format.html { render action: "new" }
+        format.html { render @department.professors, action: "new" }
         format.json { render json: @professor.errors, status: :unprocessable_entity }
       end
     end
@@ -63,14 +64,15 @@ class ProfessorsController < ApplicationController
   # PUT /professors/1.json
   def update
     @professor = Professor.find(params[:id])
+    @department = Department.find(params[:department_id])
 
     respond_to do |format|
       if @professor.update_attributes(params[:professor])
-        format.html { redirect_to @professor, notice: 'Professor was successfully updated.' }
+        format.html { redirect_to @department.professors, notice: 'Professor was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
-        format.json { render json: @professor.errors, status: :unprocessable_entity }
+        format.json { render json: @department.professors.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -89,6 +91,8 @@ class ProfessorsController < ApplicationController
 
   private
   def editor
-    :authenticate_admin! || :authenticate_instructor!
+    unless admin_signed_in? or instructor_signed_in?
+      redirect_to professors_url, notice: 'You need to sign in or sign up before continuing.'
+    end
   end
 end

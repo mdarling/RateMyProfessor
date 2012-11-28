@@ -7,5 +7,9 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
+  validates :email,
+    :presence => true,
+    :uniqueness => true,
+    :format => { :with => /^([^@\s]+)@(unm.edu)$/i }
   # attr_accessible :title, :body
 end

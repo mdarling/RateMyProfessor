@@ -13,7 +13,7 @@
 </div>
 
 <b>Add Courses for this professor: </b>
-<%= form_for [@professor, Course.new], do |f| %>
+<%= form_for [@professor, Course.new] do |f| %>
      <div class="field">
     <%= f.label :code,  "Course Code"%><br />
     <%= f.text_field :code %>

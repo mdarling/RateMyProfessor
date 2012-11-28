@@ -4,7 +4,8 @@ RateMyProfessor::Application.routes.draw do
   devise_for :users
 
   devise_for :admins
-  match '/help', to: 'static_pages#hlep'
+
+  match '/help', to: 'static_pages#help'
 
   resources :students
 
@@ -13,6 +14,9 @@ RateMyProfessor::Application.routes.draw do
           resources :courses do
           	resources :evaluation
           end
+      end
+      resources :courses do
+          resources :evaluations
       end
   end
 
