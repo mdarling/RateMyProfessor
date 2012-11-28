@@ -7,15 +7,22 @@
 
 <b>Professors</b>
 <div id="professors">
-    <%= render :partial =>@department.professors%>
+    <%= render :partial => @department.professors %>
 </div>
-
-<%= form_for [@department, Professor.new], do |f| %>
-    <p>
-    <%= f.label :name, "New Professor" %><br />
-    <%= f.text_field :name %>
-    </p>
-    <p><%= f.submit "Add Professor" %></p>
+<br/>
+<b>Courses</b>
+<div id="courses">
+    <%= render :partial => @department.courses %>
+</div>
+<br/>
+<% if admin_signed_in? %>
+  <%= form_for [@department, Professor.new] do |f| %>
+      <p>
+      <%= f.label :name, "New Professor" %><br />
+      <%= f.text_field :name %>
+      </p>	
+      <p><%= f.submit "Add Professor" %></p>
+  <% end %>
 <% end %>
 
 

@@ -1,6 +1,8 @@
 class DepartmentsController < ApplicationController
   # GET /departments
   # GET /departments.json
+  before_filter :authenticate_admin!, :only => [:new, :edit, :destroy]
+
   def index
     @departments = Department.all
 
@@ -14,6 +16,7 @@ class DepartmentsController < ApplicationController
   # GET /departments/1.json
   def show
     @department = Department.find(params[:id])
+    @professors = @department.professors.all
 
     respond_to do |format|
       format.html # show.html.erb

@@ -29,7 +29,7 @@
 <div id = "statistics">
     <div class="field">
     Total number of evaluations:
-    <%= Evaluation.where("course_id = ?", @course.id).count %>  
+    #<%= Evaluation.where("course_id = ?", @course.id).count %>  
   </div>
 </div>
 
@@ -58,7 +58,7 @@
 
 
 <b>Add evaluation for this Course: </b>
-<%= form_for [@course, Evaluation.new], do |f| %>
+<%= form_for [@course, Evaluation.new] do |f| %>
  <div class="field">
     <%= f.label :q1 %><br />
     <%= f.number_field :q1 %>
