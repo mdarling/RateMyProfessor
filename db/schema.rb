@@ -11,6 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20121127234611) do
 
   create_table "admins", :force => true do |t|
@@ -30,6 +31,16 @@ ActiveRecord::Schema.define(:version => 20121127234611) do
 
   add_index "admins", ["email"], :name => "index_admins_on_email", :unique => true
   add_index "admins", ["reset_password_token"], :name => "index_admins_on_reset_password_token", :unique => true
+=======
+ActiveRecord::Schema.define(:version => 20121128033730) do
+
+  create_table "answers", :force => true do |t|
+    t.integer  "question_id"
+    t.text     "content"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+>>>>>>> 039c2a8b1d00290f20a8780040c8bbc11bb17876
 
   create_table "courses", :force => true do |t|
     t.string   "code"
@@ -55,13 +66,13 @@ ActiveRecord::Schema.define(:version => 20121127234611) do
   end
 
   create_table "evaluations", :force => true do |t|
-    t.integer  "q1"
-    t.integer  "q2"
-    t.integer  "q3"
-    t.string   "q4"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+<<<<<<< HEAD
     t.integer  "course_id"
+=======
+    t.string   "name"
+>>>>>>> 039c2a8b1d00290f20a8780040c8bbc11bb17876
   end
 
   create_table "instructors", :force => true do |t|
@@ -87,6 +98,13 @@ ActiveRecord::Schema.define(:version => 20121127234611) do
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
     t.integer  "department_id"
+  end
+
+  create_table "questions", :force => true do |t|
+    t.integer  "evaluation_id"
+    t.text     "content"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "students", :force => true do |t|
