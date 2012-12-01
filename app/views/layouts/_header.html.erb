@@ -6,7 +6,15 @@
         <ul class="nav pull-right">
             <li><%= link_to "Home",    root_path%></li>
             <li><%= link_to "Help",    help_path%></li>
-            <li><%= link_to "Sign in", '#' %></li>
+            <% if !admin_signed_in? and !instructor_signed_in? and !user_signed_in? %>
+              <li><%= link_to "Sign in", login_path %></li>
+            <% elsif admin_signed_in? %>
+              <li><%= link_to "Sign Out", destroy_admin_session_path, method: :delete %></li>
+            <% elsif instructor_signed_in? %>
+              <li><%= link_to "Sign Out", destroy_instructor_session_path, method: :delete %></li>
+            <% elsif user_signed_in? %>
+              <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
+            <%end%>
         </ul>
         </nav>
     </div>

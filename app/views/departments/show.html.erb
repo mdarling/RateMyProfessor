@@ -10,11 +10,6 @@
     <%= render :partial => @department.professors %>
 </div>
 <br/>
-<b>Courses</b>
-<div id="courses">
-    <%= render :partial => @department.courses %>
-</div>
-<br/>
 <% if admin_signed_in? %>
   <%= form_for [@department, Professor.new] do |f| %>
       <p>
@@ -23,10 +18,7 @@
       </p>	
       <p><%= f.submit "Add Professor" %></p>
   <% end %>
+
+  <%= link_to 'Edit', edit_department_path(@department) %> |
 <% end %>
-
-
-
-
-<%= link_to 'Edit', edit_department_path(@department) %> |
 <%= link_to 'Back', departments_path %>

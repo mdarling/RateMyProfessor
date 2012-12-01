@@ -7,6 +7,8 @@ RateMyProfessor::Application.routes.draw do
 
   match '/help', to: 'static_pages#help'
 
+  match '/login', to: 'static_pages#login'
+
   resources :students
 
   resources :departments do
