@@ -1,3 +1,19 @@
 // Place all the styles related to the StaticPages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#login_left {
+    float: left;
+    width: 50%;
+    text-align: center;
+    margin-bottom: 10px;
+    a {padding: 5px;}
+}
+
+#login_right {
+    float: right;
+    width: 50%;
+    text-align: center;
+    margin-bottom: 10px;
+    a {padding: 5px;}
+}

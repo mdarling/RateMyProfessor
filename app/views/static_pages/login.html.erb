@@ -1,0 +1,15 @@
+<% if alert %>
+  <div class="alert"><%= alert %></div><br/>
+<% elsif notice %>
+  <div id="notice"><%= notice %></div><br/>
+<% end %>
+
+<h1>Sign in</h1>
+
+<div id="login_left">
+    <%= link_to "Students", new_user_session_path %>
+</div>
+
+<div id="login_right">
+    <%= link_to "Instructors", new_instructor_session_path %>
+</div>
