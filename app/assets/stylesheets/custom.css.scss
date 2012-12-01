@@ -71,35 +71,38 @@ p {
 #logo:hover {
     color: #fff;
     text-decoration: none;
-  }
+}
 
-  /* footer */
+/* footer */
 
-  footer {
+footer {
+      width: 940px;
       margin-top: 45px;
+      margin-left: auto;
+      margin-right: auto;
       padding-top: 5px;
       border-top: 1px solid #eaeaea;
       color: #999;
-}
 
-footer a {
-    color: #555;
-  }  
+      a {
+          color: #555;
+      }  
 
-  footer a:hover { 
-      color: #EDD2C1;
-}
+      a:hover { 
+          color: #EDD2C1;
+      }
 
-footer small {
-    float: left;
-  }
+      small {
+          float: left;
+        }
 
-  footer ul {
-      float: right;
-      list-style: none;
-}
+      ul {
+          float: right;
+          list-style: none;
+      }
 
-footer ul li {
-    float: left;
-    margin-left: 10px;
+      ul li {
+          float: left;
+          margin-left: 10px;
+      }
 }

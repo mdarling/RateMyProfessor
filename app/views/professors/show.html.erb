@@ -12,31 +12,33 @@
     <%= render :partial => @professor.courses %>
 </div>
 
-<b>Add Courses for this professor: </b>
-<%= form_for [@professor, Course.new] do |f| %>
-     <div class="field">
-    <%= f.label :code,  "Course Code"%><br />
-    <%= f.text_field :code %>
-  </div>
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_area :description , :rows =>6%>
-  </div>
-  <div class="field">
-    <%= f.label :semester %><br />
-    <%= f.text_field :semester %>
-  </div>
-  <div class="field">
-    <%= f.label :year %><br />
-    <%= f.number_field :year %>
-  </div>
-    <p><%= f.submit "Add Course" %></p>
-<%end%>
+<% if admin_signed_in? || instructor_signed_in? %>
+  <b>Add Courses for this professor: </b>
+  <%= form_for [@professor, Course.new] do |f| %>
+    <div class="field">
+      <%= f.label :code,  "Course Code"%><br />
+      <%= f.text_field :code %>
+    </div>
+    <div class="field">
+      <%= f.label :name %><br />
+      <%= f.text_field :name %>
+    </div>
+    <div class="field">
+      <%= f.label :description %><br />
+      <%= f.text_area :description , :rows =>6%>
+    </div>
+    <div class="field">
+      <%= f.label :semester %><br />
+      <%= f.text_field :semester %>
+    </div>
+    <div class="field">
+      <%= f.label :year %><br />
+      <%= f.number_field :year %>
+    </div>
+      <p><%= f.submit "Add Course" %></p>
+  <%end%>
 
-<%= link_to 'Edit', edit_professor_path(@professor) %> |
+  <%= link_to 'Edit', edit_professor_path(@professor) %> |
+<%end%>
 <%= link_to 'Back', department_path(@professor.department_id)%>
 

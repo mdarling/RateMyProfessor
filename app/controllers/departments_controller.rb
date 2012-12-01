@@ -1,7 +1,8 @@
 class DepartmentsController < ApplicationController
   # GET /departments
   # GET /departments.json
-  before_filter :authenticate_admin!, :only => [:new, :edit, :destroy]
+  # before_filter :creator, :only => [:new, :create, :destroy]
+  # before_filter :editor, :only => [:edit, :update]
 
   def index
     @departments = Department.all
@@ -81,6 +82,20 @@ class DepartmentsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to departments_url }
       format.json { head :no_content }
+    end
+  end
+
+  private
+
+  def creator
+    unless admin_signed_in?
+      redirect_to login_url, alert: 'You need to sign in or sign up before continuing.'
+    end
+  end
+
+  def editor
+    unless admin_signed_in?
+      redirect_to login_url, alert: 'You need to sign in or sign up before continuing.'
     end
   end
 end

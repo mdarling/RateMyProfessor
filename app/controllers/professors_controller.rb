@@ -1,8 +1,8 @@
 class ProfessorsController < ApplicationController
   # GET /professors
   # GET /professors.json
-  before_filter :authenticate_admin!, :only => [:new, :create, :destroy]
-  before_filter :editor, :only => [:edit, :update]
+  # before_filter :creator, :only => [:new, :create, :destroy]
+  # before_filter :editor, :only => [:edit, :update]
 
 
   def index
@@ -90,9 +90,16 @@ class ProfessorsController < ApplicationController
   end
 
   private
+
+  def creator
+    unless admin_signed_in?
+      redirect_to login_url, alert: 'You need to sign in or sign up before continuing.'
+    end
+  end
+
   def editor
     unless admin_signed_in? or instructor_signed_in?
-      redirect_to professors_url, notice: 'You need to sign in or sign up before continuing.'
+      redirect_to login_url, alert: 'You need to sign in or sign up before continuing.'
     end
   end
 end
