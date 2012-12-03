@@ -2,13 +2,15 @@
 
 <table>
   <tr>
-    <th>Departments</th>
+    <th></th>
+    <th></th>
     <th></th>
     <th></th>
   </tr>
 
 <% @departments.each do |department| %>
   <tr>
+    <td><%= link_to department.shortname, department%></td>
     <td><%= link_to department.name, department%></td>
     <% if admin_signed_in? %>
       <td><%= link_to 'Edit', edit_department_path(department) %></td>
