@@ -11,8 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(:version => 20121127234611) do
+ActiveRecord::Schema.define(:version => 20121202192531) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -31,8 +30,6 @@ ActiveRecord::Schema.define(:version => 20121127234611) do
 
   add_index "admins", ["email"], :name => "index_admins_on_email", :unique => true
   add_index "admins", ["reset_password_token"], :name => "index_admins_on_reset_password_token", :unique => true
-=======
-ActiveRecord::Schema.define(:version => 20121128033730) do
 
   create_table "answers", :force => true do |t|
     t.integer  "question_id"
@@ -40,7 +37,6 @@ ActiveRecord::Schema.define(:version => 20121128033730) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
->>>>>>> 039c2a8b1d00290f20a8780040c8bbc11bb17876
 
   create_table "courses", :force => true do |t|
     t.string   "code"
@@ -63,16 +59,14 @@ ActiveRecord::Schema.define(:version => 20121128033730) do
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "shortname"
   end
 
   create_table "evaluations", :force => true do |t|
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-<<<<<<< HEAD
     t.integer  "course_id"
-=======
     t.string   "name"
->>>>>>> 039c2a8b1d00290f20a8780040c8bbc11bb17876
   end
 
   create_table "instructors", :force => true do |t|
