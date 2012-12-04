@@ -10,7 +10,12 @@
 
   }
 
-
+.alpha_link{top-margin:50px;}
+  a{
+    padding: 10px;
+    font-size: medium;
+    color:#696969;
+  }
 
   .title{
     padding: 10px;

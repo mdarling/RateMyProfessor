@@ -1,4 +1,5 @@
 class Department < ActiveRecord::Base
+<<<<<<< HEAD
 
 <<<<<<< HEAD
   attr_accessible :name, :shortname
@@ -18,5 +19,12 @@ class Department < ActiveRecord::Base
   
    validates :name, presence: true
 >>>>>>> resolve
+=======
+  attr_accessible :name :shortname
+
+  has_many :professors
+
+  has_many :courses
+>>>>>>> 52289363690a23acbccf86fcb818ccb269bc8c4d
 
 end
