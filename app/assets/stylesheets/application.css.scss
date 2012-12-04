@@ -1,0 +1,74 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+ */
+
+  .table_search {
+    float: right;
+    border-collapse: collapse;
+    margin-top:0px;
+    margin-bottom:15px;
+    margin-right:80px;
+    td{font-size:large;}
+  }
+
+
+  .search_background{
+    text-align:center;
+    background-color:#696969;
+    color:#ffffff;
+    padding-right:15px;
+    padding-left:15px;
+    border-radius: 15px;
+    
+  }
+
+
+  .pulldown1{    
+    font-size: 16px;
+    font-family: Arial;
+    border-radius:6px;
+    width:130px;}
+
+  .button{
+    margin-bottom:9px;
+    border-top: .5px solid #ffffff;
+    background: #474747;
+    background: -webkit-gradient(linear,left top, left bottom, from(#ed2d2d),to(#474747));
+    background: -webkit-linear-gradient(top, #ed2d2d,#474747);
+    background: -moz-linear-gradient(top, #ed2d2d,#474747);
+    background: -ms-linear-gradient(top, #ed2d2d,#474747);
+    background: -o-linear-gradient(top, #ed2d2d,#474747);
+    padding:5px 5px;
+    -webkit-border-radius:5px;
+    -moz-border-radius:5px;
+    border-radius:5px;
+    -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+    -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+    box-shadow: rgba(0,0,0,1) 0 1px 0;
+    text-box-shadow: rgba(0,0,0,.4) 0 1px 0;
+    color: #ffffff;
+    font-size: 16px;
+    font-family: Arial;
+    text-decoration:none;
+    vertical-align:middle;
+  }
+  .button:hover{
+    border-top-color:#731c1c;
+    background:#731c1c;
+    color:#ccc;
+  }
+  .button:active{
+    border-top-color:#c41633;
+    background:#c41633;
+  } 
+

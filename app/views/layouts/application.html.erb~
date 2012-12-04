@@ -28,6 +28,8 @@ var pathArray = window.location.pathname.split( '/' );
 
 if(pathArray[1]=="professors")
 {
+my_search.queryoption1.options.selectedIndex=index_of_professors;
+
 }
 end
 
