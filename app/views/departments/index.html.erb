@@ -8,7 +8,6 @@
 
 
 
-
 <%@letter=params[:letter]%>
 <%@search=params[:search]%>
 
@@ -23,6 +22,7 @@
   </tr>
 <%@flag=0;%>
   <% @departments.each do |department| %>
+
     <%if @letter!="All"%>
 	<%if @search %>
 		<%next if !department.name.downcase.index(@search.downcase)%>
@@ -33,9 +33,11 @@
 
   <tr class="<%=cycle('list_line_odd','list_line_even')%>">
     <td class="list_name">
-    <%@flag=1%>
+
+	<%@flag=1%>
 	<%= link_to department.name, department%></td>
     	<% if admin_signed_in? %>
+
     <td><%= link_to 'Edit', edit_department_path(department) %></td>
     <td><%= link_to 'Destroy', department, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 
