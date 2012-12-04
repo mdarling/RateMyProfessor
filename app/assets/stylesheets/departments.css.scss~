@@ -40,13 +40,7 @@
     font-size: medium;
   }
 
-  h1{
-float:left;
-margin-top:35px;
-margin-left:80px;
-text-decoration:underline;
-text-decoration-color:red;
-}
+
 
 
   .list_line_even {
