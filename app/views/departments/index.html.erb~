@@ -5,39 +5,7 @@
 
 </head>
 
-<h1>All Departments</h1>
 
-<table style="margin-top:55pt;" align="center">
-<tr>
-	<td><a href="departments?letter=A">A</a></td>
-	<td><a href="departments?letter=B">B</a></td>
-	<td><a href="departments?letter=C">C</a></td>
-	<td><a href="departments?letter=D">D</a></td>
-	<td><a href="departments?letter=E">E</a></td>
-	<td><a href="departments?letter=F">F</a></td>
-	<td><a href="departments?letter=G">G</a></td>
-	<td><a href="departments?letter=H">H</a></td>
-	<td><a href="departments?letter=I">I</a></td>
-	<td><a href="departments?letter=J">J</a></td>
-	<td><a href="departments?letter=K">K</a></td>
-	<td><a href="departments?letter=L">L</a></td>
-	<td><a href="departments?letter=M">M</a></td>
-	<td><a href="departments?letter=N">N</a></td>
-	<td><a href="departments?letter=O">O</a></td>
-	<td><a href="departments?letter=P">P</a></td>
-	<td><a href="departments?letter=Q">Q</a></td>
-	<td><a href="departments?letter=R">R</a></td>
-	<td><a href="departments?letter=S">S</a></td>
-	<td><a href="departments?letter=T">T</a></td>
-	<td><a href="departments?letter=U">U</a></td>
-	<td><a href="departments?letter=V">V</a></td>
-	<td><a href="departments?letter=W">W</a></td>
-	<td><a href="departments?letter=X">X</a></td>
-	<td><a href="departments?letter=Y">Y</a></td>
-	<td><a href="departments?letter=Z">Z</a></td>
-	<td><a href="departments?letter=All">All</a></td>
-</tr>
-</table>
 
 
 
@@ -51,8 +19,15 @@
 
 <table class="table_dept">
   <tr>
+<<<<<<< HEAD
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+=======
 	<td class="title">Departments</td>
 
+>>>>>>> 52289363690a23acbccf86fcb818ccb269bc8c4d
   </tr>
 <%@flag=0;%>
   <% @departments.each do |department| %>
@@ -74,6 +49,20 @@
 
     	<% end %>
 
+<<<<<<< HEAD
+<% @departments.each do |department| %>
+  <tr>
+    <td><%= link_to department.shortname, department%></td>
+    <td><%= link_to department.name, department%></td>
+    <% if admin_signed_in? %>
+      <td><%= link_to 'Edit', edit_department_path(department) %></td>
+      <td><%= link_to 'Destroy', department, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <% else %>
+      <td><td/>
+      <td><td/>
+    <% end %>
+=======
+>>>>>>> 52289363690a23acbccf86fcb818ccb269bc8c4d
   </tr>
 
 <% end %>
