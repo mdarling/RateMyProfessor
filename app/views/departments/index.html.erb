@@ -1,4 +1,3 @@
-
 <html>
 <head>
 <title></title>
@@ -19,13 +18,7 @@
 
 <table class="table_dept">
   <tr>
-
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
 	<td class="title">Departments</td>
-
 
   </tr>
 <%@flag=0;%>
@@ -47,19 +40,6 @@
     <td><%= link_to 'Destroy', department, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 
     	<% end %>
-
-
-<% @departments.each do |department| %>
-  <tr>
-    <td><%= link_to department.shortname, department%></td>
-    <td><%= link_to department.name, department%></td>
-    <% if admin_signed_in? %>
-      <td><%= link_to 'Edit', edit_department_path(department) %></td>
-      <td><%= link_to 'Destroy', department, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-    <% else %>
-      <td><td/>
-      <td><td/>
-    <% end %>
 
   </tr>
 

@@ -14,9 +14,9 @@ class DepartmentsController < ApplicationController
   end
 
   # GET /departments/1
-  # GET /departments/1.
+  # GET /departments/1.json
   def show
-    @department = Department.find(params[:id])
+    @department = Department.find(params[:id] || params[:letter])
     @professors = @department.professors.all
 
     respond_to do |format|
