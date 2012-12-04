@@ -25,6 +25,7 @@ class EvaluationsController < ApplicationController
   # GET /evaluations/new.json
   def new
     @evaluation = Evaluation.new
+    @course = Course.find(params[:course_id])
 
     respond_to do |format|
       format.html # new.html.erb
@@ -35,20 +36,20 @@ class EvaluationsController < ApplicationController
   # GET /evaluations/1/edit
   def edit
     @evaluation = Evaluation.find(params[:id])
+    @course = Course.find(@evaluation.course_id)
   end
 
   # POST /evaluations
   # POST /evaluations.json
   def create
-    @course = Course.find(params[:course_id])
     @evaluation = Evaluation.new(params[:evaluation])
-    @evaluation.course = @course
 
     respond_to do |format|
       if @evaluation.save
         format.html { redirect_to @evaluation, notice: 'Evaluation was successfully created.' }
         format.json { render json: @evaluation, status: :created, location: @evaluation }
       else
+    	@course = Course.find(@evaluation.course_id)
         format.html { render action: "new" }
         format.json { render json: @evaluation.errors, status: :unprocessable_entity }
       end

@@ -5,7 +5,7 @@ class Course < ActiveRecord::Base
   has_many :evaluations
   has_and_belongs_to_many :students    # foreign keys in an invisible join table
 
-  validates :code, :description, :name, :semester, :year, :id, presence: true
+  validates :code, :description, :name, :semester, :year, presence: true
   validates :year, numericality: {greater_than_or_equal_to: 2012}
   validates :code, :name, :id, :description, uniqueness: true
 

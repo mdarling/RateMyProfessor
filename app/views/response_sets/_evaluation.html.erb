@@ -1,0 +1,9 @@
+<%= div_for evaluation do %>
+    <p>
+    <%=link_to h(evaluation.id), evaluation_path(evaluation.id) %>
+    Q1:<%= h(evaluation.q1) %>
+    Q2:<%= h(evaluation.q2) %>
+    Q3:<%= h(evaluation.q3) %>
+    Q4:<%= h(evaluation.q4) %>
+    </p>
+<% end %>

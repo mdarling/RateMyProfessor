@@ -1,4 +1,4 @@
-<%= form_for(@evaluation) do |f| %>
+<%= form_for @evaluation do |f| %>
   <% if @evaluation.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@evaluation.errors.count, "error") %> prohibited this evaluation from being saved:</h2>
@@ -10,6 +10,8 @@
       </ul>
     </div>
   <% end %>
+
+  <%= f.hidden_field :course_id, value: @course.id %>
 
   <div class="field">
     <%= f.label :name %><br />

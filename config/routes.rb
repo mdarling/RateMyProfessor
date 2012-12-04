@@ -28,6 +28,8 @@ RateMyProfessor::Application.routes.draw do
 
   resources :evaluations
 
+  resources :response_sets
+
   resources :professors do
       resources :courses do
       	resources :evaluation
