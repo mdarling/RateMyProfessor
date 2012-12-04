@@ -26,6 +26,10 @@ class ResponseSetsController < ApplicationController
   def new
     @response_set = ResponseSet.new
     @evaluation = Evaluation.find(params[:evaluation_id])
+    @questions = @evaluation.questions
+    @questions.each do |question|
+      @response_set.responses.push Response.new
+    end
 
     respond_to do |format|
       format.html # new.html.erb
@@ -41,7 +45,16 @@ class ResponseSetsController < ApplicationController
   # POST /response_sets
   # POST /response_sets.json
   def create
-    @response_set = ResponseSet.new(params[:response_set])
+    evaluation_id = params[:response_set][:evaluation_id]
+    @response_set = ResponseSet.new(evaluation_id: evaluation_id)
+
+    @response_params = params[:response_set].select do |key, val|
+      /response[0-9]+/.match(key)
+    end
+
+    @response_params.each do |key, val|
+      @response_set.responses.push Response.new(val)
+    end
 
     respond_to do |format|
       if @response_set.save
