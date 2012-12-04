@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Response set for <%= @response_set.evaluation.course.code %><br>
+    <%= @response_set.evaluation.name %></h1>
+
+<ol class="responses">
+<% @response_set.evaluation.questions.each do |question| %>
+  <li>
+    <%= question.content %>
+    <ol class="Answer:">
+      <% @response_set.responses.each do |response| %>
+        <% if response.question_id == question.id %>
+          <% question.answers.each do |answer| %>
+            <% if response.answer_id == answer.id %>
+              <li><%= answer.content %></li>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    </ol>
+  </li>
+<% end %>
+</ol>
+
+

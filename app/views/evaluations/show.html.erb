@@ -2,6 +2,8 @@
 
 <h1><%= @evaluation.name %></h1>
 
+<hr>
+<h3>Evaluation:</h3>
 <ol class="questions">
 <% @evaluation.questions.each do |question| %>
   <li>
@@ -15,5 +17,14 @@
 <% end %>
 </ol>
 
-<%= link_to 'Edit', edit_evaluation_path(@evaluation) %> |
+<%= link_to 'Edit', edit_evaluation_path(@evaluation) %>
+
+<hr>
+
+<h3>Responses:</h3>
+<%= div_for @evaluation.response_sets do |response_set| %>
+  <%= link_to h(response_set.id), response_set_path(response_set.id) %>
+<% end %>
+<hr>
+
 <%= link_to 'Back', course_path(@evaluation.course_id) %>
