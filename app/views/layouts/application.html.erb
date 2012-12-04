@@ -3,7 +3,7 @@
     <head>
         <title>RateMyProfessor</title>
 
-        <%= stylesheet_link_tag    "application", :media => "all" %>
+	<%= stylesheet_link_tag    "application", :media => "all" %>
         <%= javascript_include_tag "application" %>
         <%= csrf_meta_tags %>
         <%= render 'layouts/shim' %>
@@ -36,13 +36,9 @@
 
     </head>
 
-
-
-
-
-
     <body class='<%=controller.controller_name%>'>
-<!--Search box on submit trigger javascript change_dir()-->
+	<div id=search>
+	<!--Search box on submit trigger javascript change_dir()-->
 	<table class="table_search">
 	  <tr>
 	    <form name="my_search" onSubmit="return change_dir()">
@@ -95,7 +91,7 @@
 <%end%>
 
 	</script>
-</tr></td>
+</td></tr>
 </table>
 
 <table style="margin-top:10pt;" align="center">
@@ -129,10 +125,10 @@ if(!pathArray1[3]&&(pathArray1[1]=="departments"||pathArray1[1]=="professors")&&
 
 </tr>
 </table>
-
+</div>
 
         <%= render 'layouts/header' %>
-        <div class = "container">
+        <div id = "main">
             <%= yield %>
         </div>
         <%= render 'layouts/footer' %>

@@ -1,5 +1,6 @@
 <p id="notice"><%= notice %></p>
 <h1>Course information</h1>
+<br/>
 <p>
   <b>Code:</b>
   <%= @course.code %>
@@ -25,7 +26,7 @@
   <%= @course.year %>
 </p>
 
-<b><%= link_to "view Detail",course_evaluations_path(@course.id) %></b></br>
+<b><%= link_to "view Detail",course_evaluations_path(@course.id) %></b><br/>
 
 <b>Evaluations</b>
 <div id = "evaluations">

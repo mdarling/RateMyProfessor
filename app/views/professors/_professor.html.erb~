@@ -1,3 +1,0 @@
-<%= div_for professor do %>
-    <%= link_to  professor.name%><br/>
-<% end %>
