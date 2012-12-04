@@ -42,7 +42,6 @@ class ResponseSetsController < ApplicationController
   # POST /response_sets.json
   def create
     @response_set = ResponseSet.new(params[:response_set])
-    @response_set.course = @course
 
     respond_to do |format|
       if @response_set.save

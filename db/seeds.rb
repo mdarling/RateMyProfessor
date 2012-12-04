@@ -245,6 +245,50 @@ answers = [
 answer_refs = {}
 
 
+response_sets = [
+    {evaluation: 'ECE-595-04-FALL-2012-BEGINNING',
+     unique_key: 'ECE-595-04-FALL-2012-BEGINNING-RS1'
+    },
+    {evaluation: 'ECE-595-04-FALL-2012-BEGINNING',
+     unique_key: 'ECE-595-04-FALL-2012-BEGINNING-RS2'
+    },
+    {evaluation: 'ECE-595-04-FALL-2012-BEGINNING',
+     unique_key: 'ECE-595-04-FALL-2012-BEGINNING-RS3'
+    },
+  ]
+response_set_refs = {}
+
+
+responses = [
+    {response_set: 'ECE-595-04-FALL-2012-BEGINNING-RS1',
+     question:     'ECE-595-04-FALL-2012-BEGINNING-Q1',
+     answer:       'ECE-595-04-FALL-2012-BEGINNING-Q1-A1'
+    },
+    {response_set: 'ECE-595-04-FALL-2012-BEGINNING-RS1',
+     question:     'ECE-595-04-FALL-2012-BEGINNING-Q2',
+     answer:       'ECE-595-04-FALL-2012-BEGINNING-Q2-A1'
+    },
+
+    {response_set: 'ECE-595-04-FALL-2012-BEGINNING-RS2',
+     question:     'ECE-595-04-FALL-2012-BEGINNING-Q1',
+     answer:       'ECE-595-04-FALL-2012-BEGINNING-Q1-A2'
+    },
+    {response_set: 'ECE-595-04-FALL-2012-BEGINNING-RS2',
+     question:     'ECE-595-04-FALL-2012-BEGINNING-Q2',
+     answer:       'ECE-595-04-FALL-2012-BEGINNING-Q2-A2'
+    },
+
+    {response_set: 'ECE-595-04-FALL-2012-BEGINNING-RS3',
+     question:     'ECE-595-04-FALL-2012-BEGINNING-Q1',
+     answer:       'ECE-595-04-FALL-2012-BEGINNING-Q1-A2'
+    },
+    {response_set: 'ECE-595-04-FALL-2012-BEGINNING-RS3',
+     question:     'ECE-595-04-FALL-2012-BEGINNING-Q2',
+     answer:       'ECE-595-04-FALL-2012-BEGINNING-Q2-A3'
+    },
+  ]
+
+
 # Populate the departments table, saving a reference to each department created
 # so that it can be referred to later.
 Department.delete_all
@@ -306,8 +350,36 @@ end
 Answer.delete_all
 answers.each do |answer|
   question = question_refs[answer[:question]]
-  answer_key = question[:unique_key]
+  answer_key = answer[:unique_key]
   answer.delete :question
   answer.delete :unique_key
   answer_refs[answer_key] = question.answers.create answer
+end
+
+
+# Populate the response_sets table, saving a reference to each response set created
+# so that it can be referred to later.
+ResponseSet.delete_all
+response_sets.each do |response_set|
+  evaluation = evaluation_refs[response_set[:evaluation]]
+  response_set_key = response_set[:unique_key]
+  response_set.delete :evaluation
+  response_set.delete :unique_key
+  response_set_refs[response_set_key] = evaluation.response_sets.create response_set
+end
+
+
+# Populate the responses table, saving a reference to each response created
+# so that it can be referred to later.
+Response.delete_all
+responses.each do |response|
+  response_set = response_set_refs[response[:response_set]]
+  question     = question_refs[response[:question]]
+  answer       = answer_refs[response[:answer]]
+  response.delete :response_set
+  response.delete :question
+  response.delete :answer
+  response[:question_id] = question.id
+  response[:answer_id] = answer.id
+  response_set.responses.create response
 end
