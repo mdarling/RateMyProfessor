@@ -7,7 +7,7 @@ class ProfessorsController < ApplicationController
 
   def index
 if(params[:search])
-@professors=Professors.all
+@professors=Professor.all
 else
     @department = Department.find(params[:department_id])
     @professors = @department.professors.all

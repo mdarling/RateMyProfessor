@@ -3,19 +3,13 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
-.departments {
   .table_dept {
     border-collapse: collapse;
     margin-left:80px;
 
   }
 
-.alpha_link{top-margin:50px;}
-  a{
-    padding: 10px;
-    font-size: medium;
-    color:#696969;
-  }
+
 
   .title{
     padding: 10px;
@@ -29,9 +23,12 @@
     padding-bottom:.20em;
   }
   .list_name {
-      a{color:#FFFFFF;}
+    width:300px;
+
+    A:link{color:#ffffff;}
+    A:visited{color:#ffffff;text-decoration:none}
+
     font-family: arial;
-    color: #ffffff;
 
     border-radius: 5px;
 
@@ -42,19 +39,18 @@
 
 
 
-
   .list_line_even {
 
     background: #E00000;
-A:hover{text-decoration:underline ;color:#989898;background:none;}
 
+    A:hover{text-decoration:underline ;color:#989898;background:none;}
+    opacity:.8;
   }
   .list_line_odd {
     background: #989898;
-A:hover{text-decoration:underline ;color:#E00000;background:none;}
-
+    A:hover{text-decoration:underline ;color:#E00000;background:none;}
+    opacity:.8;
   }
 
 
 
-}
