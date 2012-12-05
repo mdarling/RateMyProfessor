@@ -4,7 +4,6 @@ class Department < ActiveRecord::Base
   has_many :professors
 
   has_many :courses
-  
-  validates :name, presence: true
 
+  validates :name, presence: true
 end
