@@ -1,3 +1,55 @@
 // Place all the styles related to the Departments controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.departments {
+  .table_dept {
+    border-collapse: collapse;
+    margin-left:80px;
+
+  }
+
+
+
+  .title{
+    padding: 10px;
+    font-family: arial;
+    font-size: 20pt;
+    font-weight: bold;
+  }
+
+  tr td{
+    padding-top:.10em;
+    padding-bottom:.20em;
+  }
+  .list_name {
+      a{color:#FFFFFF;}
+    font-family: arial;
+    color: #ffffff;
+
+    border-radius: 5px;
+
+    font-weight: bold;
+    padding: 10px;
+    font-size: medium;
+  }
+
+
+
+
+  .list_line_even {
+
+    background: #E00000;
+A:hover{text-decoration:underline ;color:#989898;background:none;}
+
+  }
+  .list_line_odd {
+    background: #989898;
+A:hover{text-decoration:underline ;color:#E00000;background:none;}
+
+  }
+
+
+
+}

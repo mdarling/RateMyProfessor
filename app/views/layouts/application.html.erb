@@ -2,12 +2,102 @@
 <html>
     <head>
         <title>RateMyProfessor</title>
+
         <%= stylesheet_link_tag    "application", :media => "all" %>
         <%= javascript_include_tag "application" %>
         <%= csrf_meta_tags %>
         <%= render 'layouts/shim' %>
+<!--Clickable link css-->
+	<style type="text/css">
+	A:link{text-decoration:none}
+	A:visited{text-decoration:none}
+	A:active{text-decoration:none}
+	A:hover{text-decoration:underline ;color:#E00000;background:none;}
+	</style>
+<!--Change directory depending on selection box submition-->
+	<script type="text/javaScript">
+
+	function change_dir()
+	{
+
+	var my_url="/"+document.forms["my_search"]["queryoption1"].value.toLowerCase()+"?search="+document.forms["my_search"]["search"].value;
+	window.location=my_url;
+	return false;
+	}
+	</script>
+
+
     </head>
-    <body>
+
+
+
+
+
+
+    <body class='<%=controller.controller_name%>'>
+<!--Search box on submit trigger javascript change_dir()-->
+	<table class="table_search">
+	  <tr>
+	    <form name="my_search" onSubmit="return change_dir()">
+
+		<td class="search_background"> <br \>Search:
+
+
+		<select class="pulldown1" name="queryoption1"  id="queryoption1">
+	<!--Display selections in proper order depending on current page-->
+	<script type="text/javaScript">
+	var pathArray = window.location.pathname.split( '/' );
+
+		if(pathArray[1]=="professors")
+		{
+			document.write("<option selected='selected'>Professors</option>");
+			document.write("<option>Departments</option>");
+		}
+		else
+		{
+			document.write("<option selected='selected'>Departments</option>");
+			document.write("<option>Professors</option>");
+		}
+		end
+	</script>
+		</select>
+		<br \> 
+		<input class="input1" type="search" name="search"/>
+		<input class="button" type="button" value="Submit" onclick="return change_dir()"/>   
+		</td>
+	    </form>
+	  </tr>
+	</table>
+<!--end search box-->
+
+<table class="header_table">
+<tr><td>
+	<script type="text/javaScript">
+	var pathArray = window.location.pathname.split( '/' );
+
+
+	document.write("<h1>All "+pathArray[1].charAt(0).toUpperCase()+pathArray[1].slice(1)+"</h1>");
+
+	</script>
+</tr></td>
+</table>
+
+<table style="margin-top:10pt;" align="center">
+<tr>
+<script type="text/javaScript">
+
+var alphabet=new Array("A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","All");
+var pathArray1 = window.location.pathname.split( '/' );
+for(var i=0;i<27;i++)
+{
+	document.write("<td><a href='"+pathArray1[1]+"?letter="+alphabet[i]+"'>"+alphabet[i]+"</a></td>");
+}
+</script>
+
+</tr>
+</table>
+
+
         <%= render 'layouts/header' %>
         <div class = "container">
             <%= yield %>

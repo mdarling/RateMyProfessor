@@ -1,4 +1,3 @@
-<h1>Listing professors</h1>
 
 <table>
   <tr>
@@ -8,16 +7,45 @@
     <th></th>
   </tr>
 
-<% @department.professors.each do |professor| %>
-  <tr>
-    <td><%= professor.name %></td>
-    <td><%= link_to 'Show', professor %></td>
-    <td><%= link_to 'Edit', edit_professor_path(professor) %></td>
-    <td><%= link_to 'Destroy', professor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+<%@letter=params[:letter]%>
+<%@search=params[:search]%>
 
-<br />
 
-<%= link_to 'New Professor', new_professor_path %>
+<%if(@search||@letter)%>
+<script type="text/javaScript">
+alert("hello");
+</script>
+
+	<% @professors.each do |professor| %>
+		<%if params[:search] %>
+			<%next if !professor.name.downcase.index(params[:search].downcase)%>
+		<%else%>
+			<%next if professor.name[0].downcase!=@letter%>
+		<%end%>
+	  <tr>
+	    <td><%= professor.name %></td>
+	    <td><%= link_to 'Show', professor %></td>
+	    <td><%= link_to 'Edit', edit_professor_path(professor) %></td>
+	    <td><%= link_to 'Destroy', professor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+	  </tr>
+	<% end %>
+	</table>
+	<br />
+	<%= link_to 'New Professor', new_professor_path %>
+
+<%else%>
+
+	<% @department.professors.each do |professor| %>
+	  <tr>
+	    <td><%= professor.name %></td>
+	    <td><%= link_to 'Show', professor %></td>
+	    <td><%= link_to 'Edit', edit_professor_path(professor) %></td>
+	    <td><%= link_to 'Destroy', professor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+	  </tr>
+	<% end %>
+	</table>
+
+	<br />
+
+	<%= link_to 'New Professor', new_professor_path %>
+<%end%>
