@@ -1,33 +1,9 @@
-
-<html>
-<head>
-<title></title>
-
-</head>
-
-
-
-
-
-
 <%@letter=params[:letter]%>
 <%@search=params[:search]%>
 
-
-
-
-
 <table class="table_dept">
   <tr>
-<<<<<<< HEAD
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-=======
 	<td class="title">Departments</td>
-
->>>>>>> 52289363690a23acbccf86fcb818ccb269bc8c4d
   </tr>
 <%@flag=0;%>
   <% @departments.each do |department| %>
@@ -48,21 +24,6 @@
     <td><%= link_to 'Destroy', department, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 
     	<% end %>
-
-<<<<<<< HEAD
-<% @departments.each do |department| %>
-  <tr>
-    <td><%= link_to department.shortname, department%></td>
-    <td><%= link_to department.name, department%></td>
-    <% if admin_signed_in? %>
-      <td><%= link_to 'Edit', edit_department_path(department) %></td>
-      <td><%= link_to 'Destroy', department, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-    <% else %>
-      <td><td/>
-      <td><td/>
-    <% end %>
-=======
->>>>>>> 52289363690a23acbccf86fcb818ccb269bc8c4d
   </tr>
 
 <% end %>
