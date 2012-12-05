@@ -6,9 +6,6 @@
 </head>
 
 
-
-
-
 <%@letter=params[:letter]%>
 <%@search=params[:search]%>
 
@@ -24,7 +21,7 @@
 <%@flag=0;%>
   <% @departments.each do |department| %>
 
-    <%if @letter!="All"%>
+    <%if params[:letter]&&@letter!="All"%>
 	<%if @search %>
 		<%next if !department.name.downcase.index(@search.downcase)%>
 	<%else%>

@@ -39,7 +39,7 @@
 
 .prof_name_department{
 vertical-align:center;
-width:400px;
+width:420px;
 border-collapse:collapse;
 td{
 border-radius:7px;
@@ -51,7 +51,7 @@ margin:0px;}
 
 .table_courses{
 opacity:.8;
-width:330px; 
+width:350px; 
 margin-top:15px; 
 border-radius:7px; 
 background-color:#b5b5b5; 

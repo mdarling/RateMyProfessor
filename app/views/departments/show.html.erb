@@ -1,11 +1,21 @@
 <p id="notice"><%= notice %></p>
 
+<%@letter=params[:letter]%>
 
 <b>Professors</b>
-<div id="professors">
-    <%= render :partial => @department.professors %>
-</div>
-<br/>
+<table class="prof_by_department">
+	<% @department.professors.each do |professor| %>
+  	    <%if params[:letter]&&@letter!="All"%>
+
+		<%next if professor.name[0].upcase!=@letter%>
+
+  	    <%end%>
+
+	    <tr><td><%= link_to professor.name, professor %></td></tr>
+	<%end%>
+</table>
+
+
 <% if admin_signed_in? %>
   <%= form_for [@department, Professor.new] do |f| %>
       <p>

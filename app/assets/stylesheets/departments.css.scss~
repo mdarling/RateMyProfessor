@@ -44,12 +44,12 @@
     background: #E00000;
 
     A:hover{text-decoration:underline ;color:#989898;background:none;}
-    opacity:.8;
+    opacity:.4;
   }
   .list_line_odd {
     background: #989898;
     A:hover{text-decoration:underline ;color:#E00000;background:none;}
-    opacity:.8;
+    opacity:.4;
   }
 
 
