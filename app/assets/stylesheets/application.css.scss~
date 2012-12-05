@@ -16,15 +16,17 @@
   a{
     padding: 10px;
     font-size: medium;
-    color:#696969;
+    color:#000000;
+
   }
 //Styles for the table that each pages heading resides in
 h1{
 float:left;
 text-decoration:underline;
+opacity:.7;
 }
 .header_table{
-margin-top:0px;
+margin-top:30px;
 margin-left:80px;
 }
 
@@ -86,4 +88,6 @@ margin-left:80px;
     border-top-color:#c41633;
     background:#c41633;
   } 
+
+
 
