@@ -92,7 +92,6 @@ ActiveRecord::Schema.define(:version => 20121204155636) do
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
     t.integer  "department_id"
-    t.string   "email"
   end
 
   create_table "questions", :force => true do |t|
