@@ -10,7 +10,7 @@
 <!--Clickable link css-->
 	<style type="text/css">
 	A:link{text-decoration:none}
-	A:visited{text-decoration:none}
+	A:visited{color:#000000;text-decoration:none}
 	A:active{text-decoration:none}
 	A:hover{text-decoration:underline ;color:#E00000;background:none;}
 	</style>
@@ -24,6 +24,13 @@
 	window.location=my_url;
 	return false;
 	}
+
+	function getUrlParams(){
+	  var params={};
+	  window.location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(str,key,value){params[key]=value;});
+	  return params;
+	}
+
 	</script>
 
 
@@ -58,7 +65,7 @@
 			document.write("<option selected='selected'>Departments</option>");
 			document.write("<option>Professors</option>");
 		}
-		end
+
 	</script>
 		</select>
 		<br \> 
@@ -75,8 +82,17 @@
 	<script type="text/javaScript">
 	var pathArray = window.location.pathname.split( '/' );
 
+	if(!pathArray[2])
+	{	
+		document.write("<h1>All "+pathArray[1].charAt(0).toUpperCase()+pathArray[1].slice(1)+"</h1>");
+	}
 
-	document.write("<h1>All "+pathArray[1].charAt(0).toUpperCase()+pathArray[1].slice(1)+"</h1>");
+<%if(@department)%>
+	if(pathArray[2]&&!pathArray[3])
+	{
+		document.write("<h2 style='margin-top:10px;color:black; opacity:.7;'><%= @department.name %></h2>");
+	}
+<%end%>
 
 	</script>
 </tr></td>
@@ -85,12 +101,36 @@
 <table style="margin-top:10pt;" align="center">
 <tr>
 <script type="text/javaScript">
-
-var alphabet=new Array("A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","All");
 var pathArray1 = window.location.pathname.split( '/' );
-for(var i=0;i<27;i++)
+if(!pathArray1[3]&&(pathArray1[1]=="departments"||pathArray1[1]=="professors")&&!(pathArray1[1]=="professors"&&pathArray1[2]))
 {
-	document.write("<td><a href='"+pathArray1[1]+"?letter="+alphabet[i]+"'>"+alphabet[i]+"</a></td>");
+
+
+
+	var alphabet=new Array("A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","All");
+
+	params=getUrlParams();
+
+	for(var i=0;i<27;i++)
+	{
+		document.write("<td><a ");
+		if(params.letter==alphabet[i])	
+		{
+			document.write("style='opacity:.9;font-size:large;color:#E00000;font-weight:bold;' ");
+		}
+		else
+		{
+			document.write("style='opacity:.6;'");
+		}
+
+if(pathArray[2]&&!pathArray[3])
+{
+		document.write("href='"+pathArray1[2]+"?letter="+alphabet[i]+"'>"+alphabet[i]+"</a></td>");
+}
+else
+{		document.write("href='"+pathArray1[1]+"?letter="+alphabet[i]+"'>"+alphabet[i]+"</a></td>");
+}
+	}
 }
 </script>
 

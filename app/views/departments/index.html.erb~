@@ -5,46 +5,9 @@
 
 </head>
 
-<h1>All Departments</h1>
-
-<table style="margin-top:55pt;" align="center">
-<tr>
-	<td><a href="departments?letter=A">A</a></td>
-	<td><a href="departments?letter=B">B</a></td>
-	<td><a href="departments?letter=C">C</a></td>
-	<td><a href="departments?letter=D">D</a></td>
-	<td><a href="departments?letter=E">E</a></td>
-	<td><a href="departments?letter=F">F</a></td>
-	<td><a href="departments?letter=G">G</a></td>
-	<td><a href="departments?letter=H">H</a></td>
-	<td><a href="departments?letter=I">I</a></td>
-	<td><a href="departments?letter=J">J</a></td>
-	<td><a href="departments?letter=K">K</a></td>
-	<td><a href="departments?letter=L">L</a></td>
-	<td><a href="departments?letter=M">M</a></td>
-	<td><a href="departments?letter=N">N</a></td>
-	<td><a href="departments?letter=O">O</a></td>
-	<td><a href="departments?letter=P">P</a></td>
-	<td><a href="departments?letter=Q">Q</a></td>
-	<td><a href="departments?letter=R">R</a></td>
-	<td><a href="departments?letter=S">S</a></td>
-	<td><a href="departments?letter=T">T</a></td>
-	<td><a href="departments?letter=U">U</a></td>
-	<td><a href="departments?letter=V">V</a></td>
-	<td><a href="departments?letter=W">W</a></td>
-	<td><a href="departments?letter=X">X</a></td>
-	<td><a href="departments?letter=Y">Y</a></td>
-	<td><a href="departments?letter=Z">Z</a></td>
-	<td><a href="departments?letter=All">All</a></td>
-</tr>
-</table>
-
-
-
 
 <%@letter=params[:letter]%>
 <%@search=params[:search]%>
-
 
 
 
@@ -56,9 +19,10 @@
   </tr>
 <%@flag=0;%>
   <% @departments.each do |department| %>
-    <%if @letter!="All"%>
+
+    <%if (params[:search]||params[:letter])&&@letter!="All"%>
 	<%if @search %>
-		<%next if !department.name.downcase.index(@search.downcase)%>
+		<%next if (!department.name.downcase.index(@search.downcase)&&!department.shortname.downcase.index(@search.downcase))%>
 	<%else%>
 		<%next if department.name[0].upcase!=@letter%>
 	<%end%>
@@ -66,9 +30,12 @@
 
   <tr class="<%=cycle('list_line_odd','list_line_even')%>">
     <td class="list_name">
-    <%@flag=1%>
+
+	<%@flag=1%>
 	<%= link_to department.name, department%></td>
+
     	<% if admin_signed_in? %>
+
     <td><%= link_to 'Edit', edit_department_path(department) %></td>
     <td><%= link_to 'Destroy', department, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 

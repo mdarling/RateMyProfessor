@@ -2,7 +2,13 @@
 
 <!DOCTYPE html>
 <html>
+<table>
+	<%@professor.courses.each do |course| %>
 
+
+	    <tr><td><%=course.name%></td></tr>
+	<%end%>
+</table><br /><br /><br />
 <table class="prof_name_department">
   <tr>
 	<td style="opacity:.8;background-color:#ffffff;"><h2 style='font-size:20pt;margin-left:30px;float:left;margin-top:0px;color:black; opacity:1;'><b>Name:</b> <%= @professor.name %></h2></td>
