@@ -1,8 +1,10 @@
 <<<<<<< HEAD
+
 <%@letter=params[:letter]%>
 <%@search=params[:search]%>
-
 =======
+>>>>>>> 19d070876c3a0904dadb63d8ed2c474ca62d61ea
+
 
 <html>
 <head>
@@ -16,8 +18,11 @@
 
 
 
+<<<<<<< HEAD
+=======
 
->>>>>>> kevin
+
+>>>>>>> 19d070876c3a0904dadb63d8ed2c474ca62d61ea
 <table class="table_dept">
   <tr>
 	<td class="title">Departments</td>
