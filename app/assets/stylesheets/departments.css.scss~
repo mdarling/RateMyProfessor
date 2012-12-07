@@ -37,25 +37,6 @@
     font-size: medium;
   }
 
-.prof_name_department{
-vertical-align:center;
-width:440px;
-border-collapse:collapse;
-td{
-border-radius:7px;
-}
-h2{padding-bottom:10px;
-padding-top:10px;
-margin:0px;}
-}
-
-.table_courses{
-opacity:.8;
-width:370px; 
-margin-top:15px; 
-border-radius:7px; 
-background-color:#b5b5b5; 
-margin-left:70px;}
 
 
   .list_line_even {
@@ -63,12 +44,12 @@ margin-left:70px;}
     background: #E00000;
 
     A:hover{text-decoration:underline ;color:#989898;background:none;}
-    opacity:.9;
+    opacity:.4;
   }
   .list_line_odd {
     background: #989898;
     A:hover{text-decoration:underline ;color:#E00000;background:none;}
-    opacity:.9;
+    opacity:.4;
   }
 
 

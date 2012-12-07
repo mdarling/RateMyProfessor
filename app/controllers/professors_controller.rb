@@ -7,7 +7,7 @@ class ProfessorsController < ApplicationController
 
   def index
 if(params[:search]||params[:letter])
-@professors=Professor.all
+    @professors=Professor.all
 else
     @department = Department.find(params[:department_id])
     @professors = @department.professors.all
@@ -22,7 +22,7 @@ end
   # GET /professors/1.json
   def show
     @professor = Professor.find(params[:id])
-
+    @courses = @professor.courses.all
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @professor }

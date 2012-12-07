@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-<%@letter=params[:letter]%>
-<%@search=params[:search]%>
-
-=======
 
 <html>
 <head>
@@ -17,10 +12,10 @@
 
 
 
->>>>>>> kevin
 <table class="table_dept">
   <tr>
 	<td class="title">Departments</td>
+
   </tr>
 <%@flag=0;%>
   <% @departments.each do |department| %>
@@ -45,6 +40,7 @@
     <td><%= link_to 'Destroy', department, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 
     	<% end %>
+
   </tr>
 
 <% end %>

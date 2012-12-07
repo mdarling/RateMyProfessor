@@ -80,6 +80,18 @@ architectures and technoligies that are now being referred to as Web 2.0.',
      professor: 'Gregory L. Heileman', department: 'ECE',
      unique_key: 'ECE-595-04-FALL-2012'
     },
+    {code: 'ECE-595', name: 'Web Architectures and Cloud Computing',
+     description: 'In this course we will consider web applications, and in particular the emerging
+architectures and technoligies that are now being referred to as Web 2.0.',
+     semester: 'Fall', year: 2011,
+     professor: 'Gregory L. Heileman', department: 'ECE'
+    },
+    {code: 'ECE-595', name: 'Web Architectures and Cloud Computing',
+     description: 'In this course we will consider web applications, and in particular the emerging
+architectures and technoligies that are now being referred to as Web 2.0.',
+     semester: 'Fall', year: 2003,
+     professor: 'Gregory L. Heileman', department: 'ECE'
+    },
   ]
 course_refs = {}
 
