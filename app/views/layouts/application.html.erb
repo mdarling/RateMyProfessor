@@ -119,13 +119,9 @@ if(!pathArray1[3]&&(pathArray1[1]=="departments"||pathArray1[1]=="professors")&&
 			document.write("style='opacity:.6;'");
 		}
 
-if(pathArray[2]&&!pathArray[3])
-{
-		document.write("href='"+pathArray1[2]+"?letter="+alphabet[i]+"'>"+alphabet[i]+"</a></td>");
-}
-else
-{		document.write("href='"+pathArray1[1]+"?letter="+alphabet[i]+"'>"+alphabet[i]+"</a></td>");
-}
+
+		document.write("href='?letter="+alphabet[i]+"'>"+alphabet[i]+"</a></td>");
+
 	}
 }
 </script>
