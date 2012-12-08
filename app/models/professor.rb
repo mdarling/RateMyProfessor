@@ -4,5 +4,6 @@ class Professor < ActiveRecord::Base
   has_many :courses
 
   belongs_to :department    # foreign key - department_id
+  belongs_to :instructor    # foreign key - instructor_id
 
 end

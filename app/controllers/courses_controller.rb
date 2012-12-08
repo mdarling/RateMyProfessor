@@ -1,6 +1,8 @@
 class CoursesController < ApplicationController
     # GET /courses
     # GET /courses.json
+    # before_filter :creator, :only => [:new, :create, :destroy]
+    # before_filter :editor, :only => [:edit, :update]
     def index
         @courses = Course.all
 
@@ -83,5 +85,19 @@ class CoursesController < ApplicationController
             format.html { redirect_to courses_url }
             format.json { head :no_content }
         end
+    end
+
+    private
+
+    def creator
+      unless admin_signed_in? or instructor_signed_in?
+        redirect_to login_url, alert: 'You need to sign in or sign up before continuing.'
+      end
+    end
+
+    def editor
+      unless admin_signed_in? or instructor_signed_in?
+        redirect_to login_url, alert: 'You need to sign in or sign up before continuing.'
+      end
     end
 end

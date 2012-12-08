@@ -1,6 +1,10 @@
 class EvaluationsController < ApplicationController
   # GET /evaluations
   # GET /evaluations.json
+  before_filter :creator, :only => [:new, :create, :destroy]
+  before_filter :editor, :only => [:edit, :update]
+  before_filter :viewer, :only => [:index, :show]
+
   def index
     @evaluations = Evaluation.all
 
@@ -81,6 +85,26 @@ class EvaluationsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to evaluations_url }
       format.json { head :no_content }
+    end
+  end
+
+  private
+
+  def creator
+    unless admin_signed_in? or instructor_signed_in?
+      redirect_to :back, alert: 'You need to sign in or sign up before continuing.'
+    end
+  end
+
+  def editor
+    unless admin_signed_in? or instructor_signed_in?
+      redirect_to :back, alert: 'You need to sign in or sign up before continuing.'
+    end
+  end
+
+  def viewer
+    unless admin_signed_in? or instructor_signed_in?
+      redirect_to :back, alert: 'You need to sign in or sign up before continuing.'
     end
   end
 end

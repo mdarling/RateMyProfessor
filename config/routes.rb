@@ -1,5 +1,5 @@
 RateMyProfessor::Application.routes.draw do
-  devise_for :instructors
+  devise_for :instructors, :controllers => { :registrations => "instructor" }
 
   devise_for :users
 
