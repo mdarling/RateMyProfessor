@@ -6,11 +6,13 @@ class ProfessorsController < ApplicationController
 
 
   def index
-if(params[:search]||params[:letter])
-    @professors=Professor.all
-else
-    @department = Department.find(params[:department_id])
+  
+if(params[:department1])
+    @department = Department.find(params[:department1])
     @professors = @department.professors.all
+else
+
+    @professors=Professor.all
 end
     respond_to do |format|
       format.html # index.html.erb

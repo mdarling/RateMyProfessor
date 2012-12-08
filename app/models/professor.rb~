@@ -1,0 +1,12 @@
+class Professor < ActiveRecord::Base
+  attr_accessible :name, :last_name, :first_name, :department
+
+  def full_name 
+    [last_name, first_name].join(',')  
+  end  
+
+  has_many :courses
+
+  belongs_to :department    # foreign key - department_id
+
+end

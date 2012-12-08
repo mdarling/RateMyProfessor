@@ -77,17 +77,14 @@
 <tr><td>
 	<script type="text/javaScript">
 	var pathArray = window.location.pathname.split( '/' );
-
-	if(!pathArray[2])
+<%if !params[:department1]%>
+	if(!pathArray[2]&&(pathArray[1]=="professors"||pathArray[1]=="departments")))
 	{	
 		document.write("<h1>All "+pathArray[1].charAt(0).toUpperCase()+pathArray[1].slice(1)+"</h1>");
 	}
+<%else%>
+		document.write("<h2 style='margin-top:10px;color:black; opacity:.7;'><%= @department.name %> Professors</h2>");
 
-<%if(@department)%>
-	if(pathArray[2]&&!pathArray[3])
-	{
-		document.write("<h2 style='margin-top:10px;color:black; opacity:.7;'><%= @department.name %></h2>");
-	}
 <%end%>
 
 	</script>
@@ -119,8 +116,11 @@ if(!pathArray1[3]&&(pathArray1[1]=="departments"||pathArray1[1]=="professors")&&
 			document.write("style='opacity:.6;'");
 		}
 
-
-		document.write("href='"+pathArray1[2]+"?letter="+alphabet[i]+"'>"+alphabet[i]+"</a></td>");
+	  	<%if params[:department1]%>
+			document.write("href='?department1=<%=params[:department1]%>&letter="+alphabet[i]+"'>"+alphabet[i]+"</a></td>");
+	  	<%else%>
+			document.write("href='?letter="+alphabet[i]+"'>"+alphabet[i]+"</a></td>");
+	  	<%end%>
 
 	}
 }

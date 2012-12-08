@@ -33,7 +33,10 @@
     <td class="list_name">
 
 	<%@flag=1%>
-	<%= link_to department.name, department%></td>
+	<%= link_to department.name, controller:"/professors",department1:department%></td>
+<!--	<%= link_to department.name %></td>-->
+<!--<a href="/professors?department=<%=department.shortname%>"><%=department.name%></a>-->
+
 
     	<% if admin_signed_in? %>
 
