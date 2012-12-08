@@ -1,8 +1,8 @@
 class ProfessorsController < ApplicationController
   # GET /professors
   # GET /professors.json
-  # before_filter :creator, :only => [:new, :create, :destroy]
-  # before_filter :editor, :only => [:edit, :update]
+  before_filter :creator, :only => [:new, :create, :destroy]
+  before_filter :editor, :only => [:edit, :update]
 
 
   def index

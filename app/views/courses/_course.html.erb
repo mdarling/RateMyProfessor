@@ -1,6 +1,6 @@
 <%= div_for course do %>
     <p>
-    <%=link_to h(course.code), course_path(course.id) %>
+    <%=link_to h(course.code), professor_course_path(course.professor,course.id) %>
     Year:<%= h(course.year) %>
     Semester:<%= h(course.semester) %>
     </p>

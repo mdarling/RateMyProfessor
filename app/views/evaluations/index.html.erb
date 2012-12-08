@@ -1,10 +1,10 @@
 <h1>Evaluations</h1>
 
-<% @evaluations.each do |evaluation| %>
+<% @course.evaluations.each do |evaluation| %>
   <div class="article">
     <h2><%= link_to evaluation.name, evaluation %></h2>
     <%= pluralize(evaluation.questions.size, "Question") %>
   </div>
 <% end %>
 
-<p><%= link_to 'New Evaluation', new_evaluation_path(course_id: 1) %></p>
+<p><%= link_to 'New Evaluation', new_evaluation_path(course_id: params[:course_id]) %></p>

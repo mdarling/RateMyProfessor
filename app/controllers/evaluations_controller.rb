@@ -6,6 +6,7 @@ class EvaluationsController < ApplicationController
   before_filter :viewer, :only => [:index, :show]
 
   def index
+    @course = Course.find(params[:course_id])
     @evaluations = Evaluation.all
 
     respond_to do |format|
@@ -28,8 +29,8 @@ class EvaluationsController < ApplicationController
   # GET /evaluations/new
   # GET /evaluations/new.json
   def new
-    @evaluation = Evaluation.new
     @course = Course.find(params[:course_id])
+    @evaluation = @course.evaluations.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -47,10 +48,16 @@ class EvaluationsController < ApplicationController
   # POST /evaluations.json
   def create
     @evaluation = Evaluation.new(params[:evaluation])
+    @userid = current_instructor.try(:id)
+    @userid = -1 if @userid.nil?
+    @professor = @evaluation.course.professor
+    unless (admin_signed_in? or @userid == @professor.instructor_id)
+      redirect_to :back, alert: 'Cannot create course for this professor.'
+    end
 
     respond_to do |format|
       if @evaluation.save
-        format.html { redirect_to @evaluation, notice: 'Evaluation was successfully created.' }
+        format.html { redirect_to @evaluation.course, notice: 'Evaluation was successfully created.' }
         format.json { render json: @evaluation, status: :created, location: @evaluation }
       else
     	@course = Course.find(@evaluation.course_id)

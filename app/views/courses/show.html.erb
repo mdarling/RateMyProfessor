@@ -37,7 +37,7 @@
     <%= render :partial => @course.evaluations %>
 </div>
 
-<p><%= link_to 'New Evaluation', new_evaluation_path(:course_id => @course.id) %></p>
+<p><%= link_to 'New Evaluation', new_professor_course_evaluation_path(@course.professor,@course) %></p>
 
 <% if admin_signed_in? or instructor_signed_in? %>
 <%= link_to 'Edit', edit_course_path(@course) %> |

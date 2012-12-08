@@ -42,7 +42,12 @@ class CoursesController < ApplicationController
     # POST /courses
     # POST /courses.json
     def create
+        @userid = current_instructor.try(:id)
+        @userid = -1 if @userid.nil?
         @professor = Professor.find(params[:professor_id])
+        unless (admin_signed_in? or @userid == @professor.instructor_id)
+            redirect_to :back, alert: 'Cannot create course for this professor.'
+        end
         @department = Department.find(@professor.department)
         @course = Course.new(params[:course])
         @course.department = @department

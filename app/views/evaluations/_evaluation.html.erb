@@ -1,8 +1,8 @@
 <%= div_for evaluation do %>
     <p>
-      <%=link_to h(evaluation.name), evaluation_path(evaluation.id), class: "evaluation" %>
+      <%=link_to h(evaluation.name), course_evaluation_path(evaluation.course,evaluation.id), class: "evaluation" %>
       <ul>
-        <%= link_to "Take Evaluation", new_response_set_path(evaluation_id: evaluation.id) %>
+        <%= link_to "Take Evaluation", new_evaluation_response_set_path(evaluation) %>
       </ul>
     </p>
 <% end %>
