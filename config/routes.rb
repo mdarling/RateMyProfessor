@@ -1,5 +1,5 @@
 RateMyProfessor::Application.routes.draw do
-  devise_for :instructors
+  devise_for :instructors, :controllers => { :registrations => "instructor" }
 
   devise_for :users
 
@@ -14,7 +14,7 @@ RateMyProfessor::Application.routes.draw do
   resources :departments do
       resources :professors do
           resources :courses do
-          	resources :evaluation
+          	resources :evaluations
           end
       end
       resources :courses do
@@ -26,13 +26,15 @@ RateMyProfessor::Application.routes.draw do
       resources :evaluations
   end
 
-  resources :evaluations
+  resources :evaluations do
+    resources :response_sets
+  end
 
   resources :response_sets
 
   resources :professors do
       resources :courses do
-      	resources :evaluation
+      	resources :evaluations
       end
   end
     

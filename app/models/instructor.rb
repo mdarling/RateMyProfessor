@@ -1,6 +1,6 @@
 class Instructor < ActiveRecord::Base
   # Include default devise modules. Others available are:
-  # :token_authenticatable, :confirmable, :registerable,
+  # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :recoverable, :registerable,
          :rememberable, :trackable, :validatable
@@ -12,4 +12,5 @@ class Instructor < ActiveRecord::Base
     :uniqueness => true,
     :format => { :with => /^([^@\s]+)@(unm.edu)$/i }
   # attr_accessible :title, :body
+  has_one :professor
 end

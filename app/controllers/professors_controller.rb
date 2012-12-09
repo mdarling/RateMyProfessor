@@ -1,8 +1,8 @@
 class ProfessorsController < ApplicationController
   # GET /professors
   # GET /professors.json
-  # before_filter :creator, :only => [:new, :create, :destroy]
-  # before_filter :editor, :only => [:edit, :update]
+  before_filter :creator, :only => [:new, :create, :destroy]
+  before_filter :editor, :only => [:edit, :update]
 
 
   def index
@@ -23,7 +23,10 @@ end
   # GET /professors/1
   # GET /professors/1.json
   def show
+    @userid = current_instructor.try(:id)
+    @userid = -1 if @userid.nil?
     @professor = Professor.find(params[:id])
+    @pageid = @professor.instructor_id
     @courses = @professor.courses.all
     respond_to do |format|
       format.html # show.html.erb
