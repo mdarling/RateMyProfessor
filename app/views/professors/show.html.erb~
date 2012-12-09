@@ -17,7 +17,7 @@
         <tr><td style="font-size:13.5pt;padding-right:30px;padding-left:30px;">
 
                 <!--dual selection box for term/year when showing professor courses-->
-                
+                <!--
 <script type="text/javaScript">
 var d=new Date();
 var month=d.getMonth();
@@ -41,7 +41,7 @@ document.write("<option>"+iter+"</option>");
 document.write("<option selected='selected'>All</option>");
 document.write("</select></td></tr>");
 </script>
-
+-->
 </table>
 
 
