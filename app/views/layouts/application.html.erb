@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>RateMyProfessor</title>
+        <title>RateMyClass</title>
 
 	<%= stylesheet_link_tag    "application", :media => "all" %>
-        <%= javascript_include_tag "application" %>
+        <%= javascript_include_tag 'jquery', 'application' %>
         <%= csrf_meta_tags %>
         <%= render 'layouts/shim' %>
 <!--Clickable link css-->
@@ -30,7 +30,11 @@
 	  window.location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(str,key,value){params[key]=value;});
 	  return params;
 	}
+$(function(){  // $(document).ready shorthand
 
+$('#main').hide().slideDown('slow');
+
+});
 	</script>
 
 
@@ -131,7 +135,7 @@ if(!pathArray1[3]&&(pathArray1[1]=="departments"||pathArray1[1]=="professors")&&
 </div>
         <%= render 'layouts/header' %>
 
-        <div id = "main">
+        <div id = main>
          <%= yield %>          
         </div>
 

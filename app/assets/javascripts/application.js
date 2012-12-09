@@ -13,9 +13,7 @@
 = require jquery
 = require jquery_ujs
 //= require_tree .
-
-
 $(function(){  // $(document).ready shorthand
-alert('hi');  
-('#main')hide().fadeIn('slow');
+
+$('#main').hide().fadeIn('slow');
 });
