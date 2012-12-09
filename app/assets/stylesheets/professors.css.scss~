@@ -39,7 +39,7 @@
 
 .prof_name_department{
 vertical-align:center;
-width:420px;
+width:440px;
 border-collapse:collapse;
 td{
 border-radius:7px;
@@ -51,11 +51,29 @@ margin:0px;}
 
 .table_courses{
 opacity:.8;
-width:350px; 
+width:370px; 
 margin-top:15px; 
 border-radius:7px; 
 background-color:#b5b5b5; 
 margin-left:70px;}
+
+.table_course_listing{
+opacity:;
+width:700px; 
+margin-top:15px; 
+border-radius:7px; 
+background-color:#b5b5b5; 
+margin-left:70px;}
+
+.table_course_cells{
+padding-right:30px;
+padding-left:30px;
+padding-bottom:10px;
+padding-top:15px;
+font-family:arial;
+font-size:medium;
+
+a{padding-left:0;font-family:arial;font-size:medium;margin-left:0;}}
 
 
   .list_line_even {
