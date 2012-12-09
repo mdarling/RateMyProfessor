@@ -1,13 +1,6 @@
 class Professor < ActiveRecord::Base
-<<<<<<< HEAD
-  attr_accessible :name, :last_name, :first_name, :department
+  attr_accessible :name, :first_name, :department
 
-  def full_name 
-    [last_name, first_name].join(',')  
-  end  
-=======
-  attr_accessible :name
->>>>>>> master
 
   has_many :courses
 
