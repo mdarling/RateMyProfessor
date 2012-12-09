@@ -86,7 +86,7 @@ document.write("</select></td></tr>");
     <% end %>
 
     <br />
-    <% if admin_signed_in? or user_signed_in? %>
+   
     <b style="font-size:12pt;">Add evaluation for this professor: </b> <br />
     <%= form_for [@professor, ProfessorEval.new] do |f| %>
         <div class="field">
@@ -122,7 +122,7 @@ document.write("</select></td></tr>");
             <%= f.radio_button :q4, 5 %> 5
         </div>
         <p><%= f.submit "add evaluation for this professor" %></p>
-    <%end%>
+    
     <%end%>
 
     <% if admin_signed_in? || instructor_signed_in? %>
