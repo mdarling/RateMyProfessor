@@ -46,17 +46,12 @@ document.write("</select></td></tr>");
 
 
 <table class="table_course_listing">
-    <tr><td class="table_course_cells"><b>Code</b></td><td class="table_course_cells"><b>Name</b></td><td class="table_course_cells"><b>Year</b></td><td class="table_course_cells"><b>Term</b></td></tr>
-    <tr>
-        <div id = "courses">
-
-            <script type="text/javaScript">
-
-                <%= render :partial => @professor.courses %>
-
-                </script>
-        </div></tr>
-    </table>
+<tr><td class="table_course_cells"><b>Code</b></td><td class="table_course_cells"><b>Name</b></td><td class="table_course_cells"><b>Year</b></td><td class="table_course_cells"><b>Term</b></td></tr>
+<tr>
+<div id = "courses">
+    <%= render :partial => @professor.courses %>
+</div></tr>
+</table>
 
 
 
@@ -91,10 +86,11 @@ document.write("</select></td></tr>");
     <% end %>
 
     <br />
+    <% if admin_signed_in? or user_signed_in? %>
     <b style="font-size:12pt;">Add evaluation for this professor: </b> <br />
     <%= form_for [@professor, ProfessorEval.new] do |f| %>
         <div class="field">
-            <%= f.label :q1, "Q1: Is this professor handsome?" %>
+            <%= f.label :q1, "Q1: Is this professor hot?" %>
             <%= f.radio_button :q1, 1 %> 1
             <%= f.radio_button :q1, 2 %> 2
             <%= f.radio_button :q1, 3 %> 3
@@ -127,8 +123,7 @@ document.write("</select></td></tr>");
         </div>
         <p><%= f.submit "add evaluation for this professor" %></p>
     <%end%>
-
-
+    <%end%>
 
     <% if admin_signed_in? || instructor_signed_in? %>
         <b>add courses for this professor: </b>
@@ -159,9 +154,12 @@ document.write("</select></td></tr>");
 
         <%= link_to 'edit', edit_professor_path(@professor) %> |
     <%end%>
-
     <br \>
-    <br \>
-    <%= link_to 'back', department_professors_path(@professor.department_id)%>
+    <% if admin_signed_in? %>
+      <%= link_to 'Create account for this professor',
+        new_instructor_registration_path(professor_id: @professor) %> |
+      <br \>
+    <% end %>
+    <%= link_to 'back', :back%>
     <br \>
     <br \>

@@ -1,8 +1,8 @@
 class ResponseSetsController < ApplicationController
   # GET /response_sets
   # GET /response_sets.json
-  before_filter :creator, :only => [:new, :create, :destroy]
-  before_filter :editor, :only => [:edit, :update]
+  before_filter :creator, :only => [:new, :create]
+  before_filter :editor, :only => [:edit, :update, :destroy]
   before_filter :viewer, :only => [:index, :show]
 
   def index
@@ -18,6 +18,12 @@ class ResponseSetsController < ApplicationController
   # GET /response_sets/1.json
   def show
     @response_set = ResponseSet.find(params[:id])
+    @userid = current_instructor.try(:id)
+    @userid = -1 if @userid.nil?
+    @professor = @response_set.evaluation.course.professor
+    unless (admin_signed_in? or @userid == @professor.instructor_id)
+      redirect_to :back, alert: 'Cannot view evaluation for this course.'
+    end
 
     respond_to do |format|
       format.html # show.html.erb
@@ -44,6 +50,12 @@ class ResponseSetsController < ApplicationController
   # GET /response_sets/1/edit
   def edit
     @response_set = ResponseSet.find(params[:id])
+    @userid = current_instructor.try(:id)
+    @userid = -1 if @userid.nil?
+    @professor = @response_set.evaluation.course.professor
+    unless (admin_signed_in? or @userid == @professor.instructor_id)
+      redirect_to :back, alert: 'Cannot delete evaluation for this course.'
+    end
   end
 
   # POST /response_sets
@@ -75,6 +87,12 @@ class ResponseSetsController < ApplicationController
   # PUT /response_sets/1.json
   def update
     @response_set = ResponseSet.find(params[:id])
+    @userid = current_instructor.try(:id)
+    @userid = -1 if @userid.nil?
+    @professor = @response_set.evaluation.course.professor
+    unless (admin_signed_in? or @userid == @professor.instructor_id)
+      redirect_to :back, alert: 'Cannot delete evaluation for this course.'
+    end
 
     respond_to do |format|
       if @response_set.update_attributes(params[:response_set])
@@ -91,6 +109,12 @@ class ResponseSetsController < ApplicationController
   # DELETE /response_sets/1.json
   def destroy
     @response_set = ResponseSet.find(params[:id])
+    @userid = current_instructor.try(:id)
+    @userid = -1 if @userid.nil?
+    @professor = @response_set.evaluation.course.professor
+    unless (admin_signed_in? or @userid == @professor.instructor_id)
+      redirect_to :back, alert: 'Cannot delete evaluation for this course.'
+    end
     @response_set.destroy
 
     respond_to do |format|

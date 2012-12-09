@@ -1,8 +1,8 @@
 class CoursesController < ApplicationController
     # GET /courses
     # GET /courses.json
-    # before_filter :creator, :only => [:new, :create, :destroy]
-    # before_filter :editor, :only => [:edit, :update]
+    before_filter :creator, :only => [:new, :create, :destroy]
+    before_filter :editor, :only => [:edit, :update]
     def index
         @courses = Course.all
 
@@ -36,7 +36,13 @@ class CoursesController < ApplicationController
 
     # GET /courses/1/edit
     def edit
+        @userid = current_instructor.try(:id)
+        @userid = -1 if @userid.nil?
         @course = Course.find(params[:id])
+        @professor = @course.professor
+        unless (admin_signed_in? or @userid == @professor.instructor_id)
+            redirect_to :back, alert: 'Cannot edit course for this professor.'
+        end
     end
 
     # POST /courses
@@ -83,11 +89,17 @@ class CoursesController < ApplicationController
     # DELETE /courses/1
     # DELETE /courses/1.json
     def destroy
+        @userid = current_instructor.try(:id)
+        @userid = -1 if @userid.nil?
         @course = Course.find(params[:id])
+        @professor = @course.professor
+        unless (admin_signed_in? or @userid == @professor.instructor_id)
+            redirect_to :back, alert: 'Cannot delete course for this professor.'
+        end
         @course.destroy
 
         respond_to do |format|
-            format.html { redirect_to courses_url }
+            format.html { redirect_to professor_url(@professor) }
             format.json { head :no_content }
         end
     end
