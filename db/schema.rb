@@ -92,6 +92,7 @@ ActiveRecord::Schema.define(:version => 20121207205255) do
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
     t.integer  "department_id"
+    t.integer  "instructor_id"
     t.string   "first_name"
     t.string   "department"
   end
