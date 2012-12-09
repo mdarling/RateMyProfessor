@@ -1,9 +1,11 @@
 RateMyProfessor::Application.routes.draw do
-
+<<<<<<< HEAD
   devise_for :instructors, :controllers => { :registrations => "instructor" }
-
+=======
   resources :professor_evals
 
+  devise_for :instructors
+>>>>>>> 4143e7d161092858a2e7f4e9e82cd4a2dbe63a68
 
   devise_for :users
 

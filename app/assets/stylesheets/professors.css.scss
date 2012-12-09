@@ -91,3 +91,43 @@ a{padding-left:0;font-family:arial;font-size:medium;margin-left:0;}}
 
 
 
+.table_statistics{
+opacity:.8;
+width:370px; 
+margin-top:15px; 
+border-radius:7px; 
+background-color:#b5b5b5; 
+margin-left:70px;}
+
+.table_statistic_listing{
+opacity:.8;
+width:700px; 
+margin-top:15px; 
+border-radius:7px; 
+background-color:#b5b5b5; 
+margin-left:70px;}
+
+.table_course_cells{
+padding-right:30px;
+padding-left:30px;
+padding-bottom:10px;
+padding-top:15px;
+font-family:arial;
+font-size:medium;
+
+a{padding-left:0;font-family:arial;font-size:medium;margin-left:0;}}
+
+
+  .list_line_even {
+
+    background: #E00000;
+
+    A:hover{text-decoration:underline ;color:#989898;background:none;}
+    opacity:.9;
+  }
+  .list_line_odd {
+    background: #989898;
+    A:hover{text-decoration:underline ;color:#E00000;background:none;}
+    opacity:.9;
+  }
+

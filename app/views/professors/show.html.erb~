@@ -92,7 +92,7 @@ document.write("</select></td></tr>");
 
     <br />
     <b style="font-size:12pt;">Add evaluation for this professor: </b> <br />
-    <%= form_for [@professor, ProfessorEval.new] do |f| %>
+    <%= form_for [@professor, ProfessorEval.new], do |f| %>
         <div class="field">
             <%= f.label :q1, "Q1: Is this professor handsome?" %>
             <%= f.radio_button :q1, 1 %> 1
