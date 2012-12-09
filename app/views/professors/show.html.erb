@@ -13,9 +13,9 @@
   <tr><td style="color:black;font-size:13.5pt;padding-right:30px;padding-left:30px;padding-bottom:10px;padding-top:10px; "><b>Courses</b></td></tr>
   <tr><td style="font-size:13.5pt;padding-right:30px;padding-left:30px;">
 
-
 <!--dual selection box for term/year when showing professor courses-->
-<!--<script type="text/javaScript">
+<!--
+<script type="text/javaScript">
 	var d=new Date();
 	var month=d.getMonth();
 	var year=d.getFullYear();
@@ -23,25 +23,38 @@
 	var i=0;
 
 
-    document.write("<select style='width:135px;' class='term' name='term'  id='term'>");
+    document.write("<select style='width:135px;' class='term' name='term'  id='term' >");
     if(month<=11&&month>=5){document.write("<option selected='selected'>Fall</option><option>Spring</option>");}
     else{document.write("<option selected='selected'>Spring</option><option>Fall</option>");}
-    document.write("</select>")
+    document.write("</select></td>")
     
-    document.write("<select style='width:135px;' class='year' name='year'  id='year'></select></td></tr>");
-</script>-->
+    document.write("<td style='font-size:13.5pt;padding-right:30px;padding-left:30px;allign:right;'><select style='width:135px;' class='year' name='year'  id='year'>");
 
+    for(var iter=<%=@professor.courses.minimum(:year)%>;iter<=<%=@professor.courses.maximum(:year)%>;iter++)
+    {
+	
+      document.write("<option>"+iter+"</option>");
+    }
+    document.write("<option selected='selected'>All</option>");
+    document.write("</select></td></tr>");
+</script>
+-->
 </table>
 
 
-
-<!--This isn't working for me.... can't figure out why.... also sorry for all the inline css.. i'm tired..-->
-<tr><td style="font-weight:regular;">
+<table class="table_course_listing">
+<tr><td class="table_course_cells"><b>Code</b></td><td class="table_course_cells"><b>Name</b></td><td class="table_course_cells"><b>Year</b></td><td class="table_course_cells"><b>Term</b></td></tr>
+<tr>
 <div id = "courses">
-    <%= render :partial => @professor.courses %>
-</div></tr></td>
 
-<!---------->
+<script type="text/javaScript">
+
+    <%= render :partial => @professor.courses %>
+
+</script>
+</div></tr>
+</table>
+
 
 
 <% if admin_signed_in? or @pageid == @userid %>
