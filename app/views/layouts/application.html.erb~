@@ -120,7 +120,7 @@ if(!pathArray1[3]&&(pathArray1[1]=="departments"||pathArray1[1]=="professors")&&
 		}
 
 
-		document.write("href='"+pathArray1[2]+"?letter="+alphabet[i]+"'>"+alphabet[i]+"</a></td>");
+		document.write("href='?letter="+alphabet[i]+"'>"+alphabet[i]+"</a></td>");
 
 	}
 }
@@ -129,11 +129,12 @@ if(!pathArray1[3]&&(pathArray1[1]=="departments"||pathArray1[1]=="professors")&&
 </tr>
 </table>
 </div>
-
         <%= render 'layouts/header' %>
+
         <div id = "main">
-            <%= yield %>
+         <%= render :partial => 'layouts/middle' %>          
         </div>
+
         <%= render 'layouts/footer' %>
     </body>
 </html>
