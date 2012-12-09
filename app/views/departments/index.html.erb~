@@ -1,3 +1,12 @@
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+
+<%@letter=params[:letter]%>
+<%@search=params[:search]%>
+=======
+>>>>>>> 19d070876c3a0904dadb63d8ed2c474ca62d61ea
+>>>>>>> master
 
 
 <html>
@@ -39,6 +48,7 @@
 
 	    	<% if admin_signed_in? %>
 
+<<<<<<< HEAD
 	    <td><%= link_to 'Edit', edit_department_path(department) %></td>
 	    <td><%= link_to 'Destroy', department, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 
@@ -52,6 +62,19 @@
 	    <td class="list_name">
 
 		No departments meet the criteria</td>
+=======
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 19d070876c3a0904dadb63d8ed2c474ca62d61ea
+<table class="table_dept">
+  <tr>
+	<td class="title">Departments</td>
+  </tr>
+<%@flag=0;%>
+  <% @departments.each do |department| %>
+>>>>>>> master
 
 	<%end%>
 	<tr>

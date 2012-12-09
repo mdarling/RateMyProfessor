@@ -314,7 +314,11 @@ end
 Professor.delete_all
 professors.each do |professor|
   department = department_refs[professor[:department]]
+<<<<<<< HEAD
   professor.delete :department
+=======
+ # professor.delete :department
+>>>>>>> master
   professor_refs[professor[:name]] = department.professors.create professor
 end
 
