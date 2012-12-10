@@ -1,5 +1,0 @@
-
-var new_yield = $("<%= escape_javascript(render(:partial => @middle))%>");
-
-
-
