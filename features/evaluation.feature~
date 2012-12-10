@@ -1,7 +1,0 @@
-Feature: Evaluation Creation
-
-Scenario: New Evaluation
-  Given a Professor named John Smith
-  And I have a course called ECE101
-  When I create a new evaluation 
-  Then it belongs to a course

@@ -132,6 +132,9 @@ if(!pathArray1[3]&&(pathArray1[1]=="departments"||pathArray1[1]=="professors")&&
 
         <%= render 'layouts/header' %>
         <div id = "main">
+            <% if alert %>
+                <div class="alert"><%= alert %></div><br/>
+            <% end %>
             <%= yield %>
         </div>
         <%= render 'layouts/footer' %>
