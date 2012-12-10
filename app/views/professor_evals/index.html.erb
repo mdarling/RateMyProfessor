@@ -1,0 +1,31 @@
+<h1>Listing professor_evals</h1>
+
+<table>
+  <tr>
+    <th>Q1</th>
+    <th>Q2</th>
+    <th>Q3</th>
+    <th>Q4</th>
+    <th>Comment</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @professor_evals.each do |professor_eval| %>
+  <tr>
+    <td><%= professor_eval.q1 %></td>
+    <td><%= professor_eval.q2 %></td>
+    <td><%= professor_eval.q3 %></td>
+    <td><%= professor_eval.q4 %></td>
+    <td><%= professor_eval.comment %></td>
+    <td><%= link_to 'Show', professor_eval %></td>
+    <td><%= link_to 'Edit', edit_professor_eval_path(professor_eval) %></td>
+    <td><%= link_to 'Destroy', professor_eval, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Professor eval', new_professor_eval_path %>

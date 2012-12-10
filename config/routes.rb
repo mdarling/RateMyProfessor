@@ -1,4 +1,6 @@
 RateMyProfessor::Application.routes.draw do
+  resources :professor_evals
+
   devise_for :instructors
 
   devise_for :users
@@ -13,6 +15,7 @@ RateMyProfessor::Application.routes.draw do
 
   resources :departments do
       resources :professors do
+          resources :professor_evals
           resources :courses do
           	resources :evaluation
           end
@@ -31,6 +34,7 @@ RateMyProfessor::Application.routes.draw do
   resources :response_sets
 
   resources :professors do
+      resources :professor_evals
       resources :courses do
       	resources :evaluation
       end
