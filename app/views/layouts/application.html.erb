@@ -100,11 +100,8 @@ $('#main').hide().fadeIn('slow');
 <tr>
 <script type="text/javaScript">
 var pathArray1 = window.location.pathname.split( '/' );
-if((!pathArray1[3]||pathArray1[3]=="professors")&&(pathArray1[1]=="departments"||pathArray1[1]=="professors")&&!(pathArray1[1]=="professors"&&pathArray1[2]))
+if((!pathArray1[3]||pathArray1[3]=="professors"&&!pathArray1[4])&&(pathArray1[1]=="departments"||pathArray1[1]=="professors")&&!(pathArray1[1]=="professors"&&pathArray1[2]))
 {
-
-
-
 	var alphabet=new Array("A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","All");
 
 	params=getUrlParams();
@@ -124,6 +121,10 @@ if((!pathArray1[3]||pathArray1[3]=="professors")&&(pathArray1[1]=="departments"|
 	  	document.write("href='?letter="+alphabet[i]+"'>"+alphabet[i]+"</a></td>");
 
 	}
+}
+else
+{
+  document.write("<br><br><br><br><br>");
 }
 </script>
 
