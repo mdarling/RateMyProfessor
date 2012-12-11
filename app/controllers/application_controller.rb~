@@ -1,9 +1,0 @@
-class ApplicationController < ActionController::Base
-  protect_from_forgery
-
-  def middle
-    respond_to do |format|
-        format.js # create.js.erb
-    end
-  end
-end

@@ -1,6 +1,10 @@
 class ProfessorEvalsController < ApplicationController
   # GET /professor_evals
   # GET /professor_evals.json
+  before_filter :creator, :only => [:new, :create]
+  before_filter :editor, :only => [:edit, :update, :destroy]
+  before_filter :viewer, :only => [:index, :show]
+
   def index
     @professor_evals = ProfessorEval.all
 
@@ -35,6 +39,12 @@ class ProfessorEvalsController < ApplicationController
   # GET /professor_evals/1/edit
   def edit
     @professor_eval = ProfessorEval.find(params[:id])
+    @userid = current_instructor.try(:id)
+    @userid = -1 if @userid.nil?
+    @professor = @professor_eval.professor
+    unless (admin_signed_in? or @userid == @professor.instructor_id)
+      redirect_to :back, alert: 'Cannot edit evaluation for this professor.'
+    end
   end
 
   # POST /professor_evals
@@ -59,6 +69,12 @@ class ProfessorEvalsController < ApplicationController
   # PUT /professor_evals/1.json
   def update
     @professor_eval = ProfessorEval.find(params[:id])
+    @userid = current_instructor.try(:id)
+    @userid = -1 if @userid.nil?
+    @professor = @professor_eval.professor
+    unless (admin_signed_in? or @userid == @professor.instructor_id)
+      redirect_to :back, alert: 'Cannot edit evaluation for this professor.'
+    end
 
     respond_to do |format|
       if @professor_eval.update_attributes(params[:professor_eval])
@@ -75,11 +91,37 @@ class ProfessorEvalsController < ApplicationController
   # DELETE /professor_evals/1.json
   def destroy
     @professor_eval = ProfessorEval.find(params[:id])
+    @userid = current_instructor.try(:id)
+    @userid = -1 if @userid.nil?
+    @professor = @professor_eval.professor
+    unless (admin_signed_in? or @userid == @professor.instructor_id)
+      redirect_to :back, alert: 'Cannot delete evaluation for this professor.'
+    end
     @professor_eval.destroy
 
     respond_to do |format|
       format.html { redirect_to professor_evals_url }
       format.json { head :no_content }
+    end
+  end
+
+  private
+
+  def creator
+    unless admin_signed_in? or instructor_signed_in? or user_signed_in?
+      redirect_to :back, alert: 'You need to sign in or sign up before continuing.'
+    end
+  end
+
+  def editor
+    unless admin_signed_in? or instructor_signed_in?
+      redirect_to :back, alert: 'You need to sign in or sign up before continuing.'
+    end
+  end
+
+  def viewer
+    unless admin_signed_in? or instructor_signed_in?
+      redirect_to :back, alert: 'You need to sign in or sign up before continuing.'
     end
   end
 end
