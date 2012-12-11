@@ -1,6 +1,8 @@
 <%= div_for course do %>
+<tr>
     <td class="table_course_cells"><%=link_to course.code, professor_course_path(course.professor,course.id) %></td>
     <td class="table_course_cells"><%= course.name %></td>
     <td class="table_course_cells"><%= course.year %></td>
     <td class="table_course_cells"><%= course.semester %></td>
+</tr>
 <% end %>
