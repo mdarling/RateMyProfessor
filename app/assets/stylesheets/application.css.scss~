@@ -85,7 +85,7 @@ margin-left:80px;
 	background:-ms-linear-gradient(top,#E60000 0%,#919191 100%);
 	background:linear-gradient(top,#E60000 0%,#919191 100%);
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#E60000',endColorstr='#919191',GradientType=0);
-	border:2px solid;
+	border:1.9px solid;
 	border-color:black;
 
 }
