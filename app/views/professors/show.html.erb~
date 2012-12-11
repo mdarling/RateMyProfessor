@@ -49,7 +49,7 @@ document.write("</select></td></tr>");
 <tr><td class="table_course_cells"><b>Code</b></td><td class="table_course_cells"><b>Name</b></td><td class="table_course_cells"><b>Year</b></td><td class="table_course_cells"><b>Term</b></td></tr>
 <tr>
 <div id = "courses">
-    <%= render :partial => @professor.courses %>
+ 
 </div></tr>
 </table>
 
