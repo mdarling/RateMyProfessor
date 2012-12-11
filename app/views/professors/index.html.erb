@@ -1,9 +1,9 @@
 <%@letter=params[:letter]%>
 <%@search=params[:search]%>
-<%@department_param=params[:department1]%>
+<%@department_param=params[:department_id]%>
 
 
-<%if !params[:department1]%>
+<%if !params[:department_id]%>
 	<table class="table_dept">
 	   <tr>
 		<td class="title">Professors</td>
@@ -12,7 +12,7 @@
 
 		<% @professors.each do |professor| %>
 
-	  	    <%if (params[:search]||params[:letter]||params[:department])&&@letter!="All" %>
+	  	    <%if (params[:search]||params[:letter]||params[:department_id])&&@letter!="All" %>
 			<%if params[:search]%>
 				<%@search_words=@search.split(" ")%>
 			    	<%if @search_words[1]%>
@@ -24,7 +24,7 @@
 
 			<%elsif params[:letter]%>
 				<%next if professor.name[0].upcase!=@letter%>
-			<%elsif params[:department]%>
+			<%elsif params[:department_id]%>
 				<%next if professor.department!=@department_param%>
 			<%end%>
 	  	    <%end%>
@@ -62,7 +62,7 @@
 	</table>
 	<br />
 	<% if admin_signed_in? %>
-		<%= link_to 'New Professor', new_professor_path %>
+		<%= link_to 'New Professor', new_department_professor_path(@department) %>
 	<%end%>
 
 <%else%>
@@ -84,7 +84,7 @@
 	     <td class="list_name">
 
 			<%@flag=1%>
-		    <%= link_to professor.name, professor %></td>
+		    <%= link_to professor.name, department_professor_path(@department,professor) %></td>
 		<%end%>
 	</table>
 

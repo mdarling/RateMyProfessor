@@ -7,13 +7,13 @@ class ProfessorsController < ApplicationController
 
   def index
   
-if(params[:department1])
-    @department = Department.find(params[:department1])
-    @professors = @department.professors.all
-else
+    if(params[:department_id])
+      @department = Department.find(params[:department_id])
+      @professors = @department.professors.all
+    else
+      @professors=Professor.all
+    end
 
-    @professors=Professor.all
-end
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @professors }
