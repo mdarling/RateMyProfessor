@@ -1,8 +1,8 @@
 class DepartmentsController < ApplicationController
   # GET /departments
   # GET /departments.json
-  # before_filter :creator, :only => [:new, :create, :destroy]
-  # before_filter :editor, :only => [:edit, :update]
+  before_filter :creator, :only => [:new, :create, :destroy]
+  before_filter :editor, :only => [:edit, :update]
 
   def index
     @departments = Department.all

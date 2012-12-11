@@ -46,12 +46,7 @@
 <tr><td class="table_course_cells"><b>Code</b></td><td class="table_course_cells"><b>Name</b></td><td class="table_course_cells"><b>Year</b></td><td class="table_course_cells"><b>Term</b></td></tr>
 <tr>
 <div id = "courses">
-
-<script type="text/javaScript">
-
     <%= render :partial => @professor.courses %>
-
-</script>
 </div></tr>
 </table>
 
@@ -89,8 +84,9 @@
 <% if admin_signed_in? %>
   <%= link_to 'Create account for this professor',
         new_instructor_registration_path(professor_id: @professor) %> |
+  <br \>
 <% end %>
-<br \>
-<%= link_to 'Back', department_path(@professor.department_id)%>
+
+<%= link_to 'Back', :back%>
 <br \>
 <br \>

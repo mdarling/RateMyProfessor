@@ -42,6 +42,12 @@ class EvaluationsController < ApplicationController
   def edit
     @evaluation = Evaluation.find(params[:id])
     @course = Course.find(@evaluation.course_id)
+    @userid = current_instructor.try(:id)
+    @userid = -1 if @userid.nil?
+    @professor = @course.professor
+    unless (admin_signed_in? or @userid == @professor.instructor_id)
+      redirect_to :back, alert: 'Cannot edit evaluation for this course.'
+    end
   end
 
   # POST /evaluations
@@ -52,12 +58,12 @@ class EvaluationsController < ApplicationController
     @userid = -1 if @userid.nil?
     @professor = @evaluation.course.professor
     unless (admin_signed_in? or @userid == @professor.instructor_id)
-      redirect_to :back, alert: 'Cannot create course for this professor.'
+      redirect_to :back, alert: 'Cannot create evaluation for this course.'
     end
 
     respond_to do |format|
       if @evaluation.save
-        format.html { redirect_to @evaluation.course, notice: 'Evaluation was successfully created.' }
+        format.html { redirect_to professor_course_url(@professor,@evaluation.course), notice: 'Evaluation was successfully created.' }
         format.json { render json: @evaluation, status: :created, location: @evaluation }
       else
     	@course = Course.find(@evaluation.course_id)
@@ -71,6 +77,12 @@ class EvaluationsController < ApplicationController
   # PUT /evaluations/1.json
   def update
     @evaluation = Evaluation.find(params[:id])
+    @userid = current_instructor.try(:id)
+    @userid = -1 if @userid.nil?
+    @professor = @evaluation.course.professor
+    unless (admin_signed_in? or @userid == @professor.instructor_id)
+      redirect_to :back, alert: 'Cannot edit evaluation for this course.'
+    end
 
     respond_to do |format|
       if @evaluation.update_attributes(params[:evaluation])
@@ -87,6 +99,12 @@ class EvaluationsController < ApplicationController
   # DELETE /evaluations/1.json
   def destroy
     @evaluation = Evaluation.find(params[:id])
+    @userid = current_instructor.try(:id)
+    @userid = -1 if @userid.nil?
+    @professor = @evaluation.course.professor
+    unless (admin_signed_in? or @userid == @professor.instructor_id)
+      redirect_to :back, alert: 'Cannot delete evaluation for this course.'
+    end
     @evaluation.destroy
 
     respond_to do |format|

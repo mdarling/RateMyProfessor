@@ -1,8 +1,8 @@
 class ResponseSetsController < ApplicationController
   # GET /response_sets
   # GET /response_sets.json
-  before_filter :creator, :only => [:new, :create, :destroy]
-  before_filter :editor, :only => [:edit, :update]
+  before_filter :creator, :only => [:new, :create]
+  before_filter :editor, :only => [:edit, :update, :destroy]
   before_filter :viewer, :only => [:index, :show]
 
   def index

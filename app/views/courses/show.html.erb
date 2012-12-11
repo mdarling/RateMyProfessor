@@ -1,8 +1,6 @@
 <% if notice %>
   <div id="notice"><%= notice %></div><br/>
 <% end %>
-
-<p id="notice"><%= notice %></p>
 <h1>Course information</h1>
 <br/>
 <p>
@@ -40,6 +38,6 @@
 <p><%= link_to 'New Evaluation', new_professor_course_evaluation_path(@course.professor,@course) %></p>
 
 <% if admin_signed_in? or instructor_signed_in? %>
-<%= link_to 'Edit', edit_course_path(@course) %> |
+<%= link_to 'Edit', edit_professor_course_path(@course.professor,@course) %> |
 <% end %>
 <%= link_to 'Back', professor_path(@course.professor_id)%>
