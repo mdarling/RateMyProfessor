@@ -32,7 +32,7 @@
 	}
 $(function(){  // $(document).ready shorthand
 
-$('#main').hide().slideDown('slow');
+$('#main').hide().fadeIn('slow');
 
 });
 	</script>
@@ -81,12 +81,13 @@ $('#main').hide().slideDown('slow');
 <tr><td>
 	<script type="text/javaScript">
 	var pathArray = window.location.pathname.split( '/' );
-<%if !params[:department1]%>
+<%if !params[:department_id]%>
 	if(!pathArray[2]&&(pathArray[1]=="professors"||pathArray[1]=="departments"))
 	{	
 		document.write("<h1>All "+pathArray[1].charAt(0).toUpperCase()+pathArray[1].slice(1)+"</h1>");
 	}
-<%else%>
+<%end%>
+<%if @department%>
 		document.write("<h2 style='margin-top:10px;color:black; opacity:.7;'><%= @department.name %> Professors</h2>");
 
 <%end%>
@@ -99,7 +100,7 @@ $('#main').hide().slideDown('slow');
 <tr>
 <script type="text/javaScript">
 var pathArray1 = window.location.pathname.split( '/' );
-if(!pathArray1[3]&&(pathArray1[1]=="departments"||pathArray1[1]=="professors")&&!(pathArray1[1]=="professors"&&pathArray1[2]))
+if((!pathArray1[3]||pathArray1[3]=="professors")&&(pathArray1[1]=="departments"||pathArray1[1]=="professors")&&!(pathArray1[1]=="professors"&&pathArray1[2]))
 {
 
 
@@ -120,11 +121,7 @@ if(!pathArray1[3]&&(pathArray1[1]=="departments"||pathArray1[1]=="professors")&&
 			document.write("style='opacity:.6;'");
 		}
 
-	  	<%if params[:department1]%>
-			document.write("href='?department1=<%=params[:department1]%>&letter="+alphabet[i]+"'>"+alphabet[i]+"</a></td>");
-	  	<%else%>
-			document.write("href='?letter="+alphabet[i]+"'>"+alphabet[i]+"</a></td>");
-	  	<%end%>
+	  	document.write("href='?letter="+alphabet[i]+"'>"+alphabet[i]+"</a></td>");
 
 	}
 }

@@ -40,7 +40,7 @@ color:black;}
 	border:0px solid white
 }
 .mybutton:hover{
-	padding:6px 11px;
+
 	background:-moz-linear-gradient(top,#E60000 50%,#919191 100%);
 	background:-webkit-gradient(linear,left top,left bottom,color-stop(0%,#E60000),color-stop(100%,#919191));
 	background:-webkit-linear-gradient(top,#E60000 0%,#919191 100%);
