@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121207205255) do
+ActiveRecord::Schema.define(:version => 20121210021054) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -87,14 +87,25 @@ ActiveRecord::Schema.define(:version => 20121207205255) do
   add_index "instructors", ["email"], :name => "index_instructors_on_email", :unique => true
   add_index "instructors", ["reset_password_token"], :name => "index_instructors_on_reset_password_token", :unique => true
 
+  create_table "professor_evals", :force => true do |t|
+    t.integer  "q1"
+    t.integer  "q2"
+    t.integer  "q3"
+    t.integer  "q4"
+    t.string   "comment"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.integer  "professor_id"
+  end
+
   create_table "professors", :force => true do |t|
     t.string   "name"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
     t.integer  "department_id"
+    t.integer  "instructor_id"
     t.string   "first_name"
     t.string   "department"
-    t.integer  "instructor_id"
   end
 
   create_table "questions", :force => true do |t|
