@@ -35,7 +35,7 @@
 
 			<%@flag=1%>
 
-			    <%= link_to professor.name, professor %></td>
+			    <%= link_to "#{professor.name}, #{professor.first_name}", professor %></td>
 
 		    	<% if admin_signed_in? %>
 			    <td><%= link_to 'Edit', edit_professor_path(professor) %></td>
@@ -84,7 +84,7 @@
 	     <td class="list_name">
 
 			<%@flag=1%>
-		    <%= link_to professor.name, department_professor_path(@department,professor) %></td>
+		    <%= link_to "#{professor.name}, #{professor.first_name}", department_professor_path(@department,professor) %></td>
 		<%end%>
 	</table>
 
