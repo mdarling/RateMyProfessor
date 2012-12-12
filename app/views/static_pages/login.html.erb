@@ -2,10 +2,17 @@
   <div id="notice"><%= notice %></div><br/>
 <% end %>
 
-<div id="login_left">
-    <%= link_to "Students", new_user_session_path %>
-</div>
+<table align="center" class="tablelinks">
 
-<div id="login_right">
-    <%= link_to "Instructors", new_instructor_session_path %>
-</div>
+<tr><td colspan="3"><h2>Sign in as:</h2><br/></td></tr>
+
+<tr>
+<td><input style="width:200px;margin-right:50px;" class="mybutton" onClick="parent.location='/users/sign_in'" type="button" value="Student"></td>
+<td><input style="width:200px;margin-right:50px;" class="mybutton" onClick="parent.location='/instructors/sign_in'" type="button" value="Professor"></td>
+<td><input style="width:200px;" class="mybutton" onClick="parent.location='/admins/sign_in'" type="button" value="Site Admin"></td>
+</tr>
+
+<!--<tr><td><a href="/departments">Department</a></td><td><a href="/professors">Professor</a></td></tr>-->
+
+</table>
+
