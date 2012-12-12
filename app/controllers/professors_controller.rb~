@@ -3,6 +3,7 @@ class ProfessorsController < ApplicationController
   # GET /professors.json
   before_filter :creator, :only => [:new, :create, :destroy]
   before_filter :editor, :only => [:edit, :update]
+ 
 
   def index 	
     if(params[:department_id])

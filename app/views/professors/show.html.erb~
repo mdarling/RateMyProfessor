@@ -1,6 +1,3 @@
-<!DOCTYPE html>
-<html>
-
     <table class="prof_name_department">
         <tr>
             <td style="opacity:.8;background-color:#ffffff;"><h2 style='font-size:20pt;margin-left:30px;float:left;margin-top:0px;color:black; opacity:1;'><b>Name:</b> <%= @professor.name %></h2></td>
@@ -47,10 +44,9 @@ document.write("</select></td></tr>");
 
 <table class="table_course_listing">
 <tr><td class="table_course_cells"><b>Code</b></td><td class="table_course_cells"><b>Name</b></td><td class="table_course_cells"><b>Year</b></td><td class="table_course_cells"><b>Term</b></td></tr>
-<tr>
 <div id = "courses">
- 
-</div></tr>
+    <%= render :partial => @professor.courses %>
+</div>
 </table>
 
 

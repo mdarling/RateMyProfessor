@@ -4,6 +4,7 @@ RateMyProfessor::Application.routes.draw do
 
   resources :professor_evals
 
+
   devise_for :users
 
   devise_for :admins
@@ -14,7 +15,6 @@ RateMyProfessor::Application.routes.draw do
 
   resources :students
 
-  resources :professors, only: [:index]
   resources :departments do
       resources :professors do
           resources :professor_evals
