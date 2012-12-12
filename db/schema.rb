@@ -95,7 +95,7 @@ ActiveRecord::Schema.define(:version => 20121210021054) do
     t.integer  "q5"
     t.integer  "q6"
     t.integer  "q7"
-    t.integer  "q8"        
+    t.integer  "q8"
     t.integer  "q9"
     t.integer  "q10"
     t.string   "comment"
