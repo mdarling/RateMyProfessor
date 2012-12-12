@@ -122,7 +122,8 @@ document.write("</select></td></tr>");
     <%end%>
 
     <% if admin_signed_in? || instructor_signed_in? %>
-        <b>add courses for this professor: </b>
+	<br /><br />
+        <h3>Add a course for this professor: </h3>
         <%= form_for [@professor, Course.new] do |f| %>
             <div class="field">
                 <%= f.label :code, "course code"%><br />

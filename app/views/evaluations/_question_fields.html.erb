@@ -1,10 +1,13 @@
 <fieldset>
   <%= f.label :content, "Question" %><br />
   <%= f.text_area :content, rows: 2 %><br />
-  <%= f.check_box :_destroy %>
-  <%= f.label :_destroy, "Remove Question" %>
+  <%= f.hidden_field :_destroy %>
+  <%= link_to "Remove Question", '#', class: "remove_fields" %>
+  <br/>
+  <br/>
   <%= f.fields_for :answers do |builder| %>
     <%= render 'answer_fields', f: builder %>
   <% end %>
   <%= link_to_add_fields "Add Answer", f, :answers %>
 </fieldset>
+<br/>
