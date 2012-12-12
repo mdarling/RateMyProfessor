@@ -4,6 +4,7 @@
 
 
 <%if !params[:department_id]%>
+
 	<table class="table_dept">
 	   <tr>
 		<td class="title">Professors</td>
@@ -14,11 +15,11 @@
 
 	  	    <%if (params[:search]||params[:letter]||params[:department_id])&&@letter!="All" %>
 			<%if params[:search]%>
-				<%@search_words=@search.split(" ")%>
+				<%@search_words=@search.split(/[\s,]+/)%>
 			    	<%if @search_words[1]%>
-					<%next if (!professor.name.downcase.index(@search_words[0].downcase)||!professor.name.downcase.index(@search_words[1].downcase))%>
+					<%next if (!professor.name.downcase.index(@search_words[0].downcase)||!professor.first_name.downcase.index(@search_words[1].downcase))&&(!professor.first_name.downcase.index(@search_words[0].downcase)||!professor.name.downcase.index(@search_words[1].downcase))%>
 				<%else%>
-					<%next if (!professor.name.downcase.index(@search.downcase))%>
+					<%next if (!professor.name.downcase.index(@search.downcase))&&(!professor.first_name.downcase.index(@search.downcase))%>
 				<%end%>
 
 
@@ -35,7 +36,7 @@
 
 			<%@flag=1%>
 
-			    <%= link_to "#{professor.name}, ", professor %></td>
+			    <%= link_to "#{professor.name}, #{professor.first_name}", professor %></td>
 
 		    	<% if admin_signed_in? %>
 			    <td><%= link_to 'Edit', edit_professor_path(professor) %></td>
