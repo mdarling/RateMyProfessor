@@ -7,9 +7,9 @@ class ProfessorsController < ApplicationController
   def index 	
     if(params[:department_id])
       @department = Department.find(params[:department_id])
-      @professors = @department.professors.all
+      @professors = @department.professors.find(:all,:order=>'name')
     else
-      @professors=Professor.all
+      @professors=Professor.find(:all,:order=>'name')
     end
 
     respond_to do |format|

@@ -1,6 +1,51 @@
+<!doctype html>
+
+ 
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>jQuery UI Slider - Snap to increments</title>
+<%javascript_include_tag 'jquery-1.8.3.min.js','application'%>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" />
+    <script src="http://code.jquery.com/jquery-1.8.3.js"></script>
+    <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+    <link rel="stylesheet" href="/resources/demos/style.css" />
+    <style type="text/css">
+	.ui-slider-horizontal .ui-state-default{height:1px;width:1px;}
+    </style>
+    <script>
+    $(function() {
+	var rank=["poor","not great","ok","good","great!"]
+        $( "#slider" ).slider({
+            value:100,
+            min: 0,
+            max: 4,
+            step: 1,
+            slide: function( event, ui ) {
+                $( "#amount" ).val(rank[ui.value]);
+            }
+        });
+
+        $( "#amount" ).val(rank[$( "#slider" ).slider( "value" )]);
+    });
+    </script>
+</head>
+<body>
+ 
+<p>
+
+    <input type="text" id="amount" style="border: 0; color: #f6931f; font-weight: bold;" />
+</p>
+ 
+<div id="slider" style="width:10em;"></div>
+
+
+
+
+
     <table class="prof_name_department">
         <tr>
-            <td style="opacity:.8;background-color:#ffffff;"><h2 style='font-size:20pt;margin-left:30px;float:left;margin-top:0px;color:black; opacity:1;'><b>Name:</b> <%= @professor.name %></h2></td>
+            <td style="opacity:.8;background-color:#ffffff;"><h2 style='font-size:20pt;margin-left:30px;float:left;margin-top:0px;color:black; opacity:1;'><b>Name:</b> <%= "#{@professor.name}, #{@professor.first_name}" %></h2></td>
         </tr>
         <tr>	
             <td style="opacity:1;background-color:#fe4d4d;"><h2 style='font-size:14pt;margin-left:30px;float:left;margin-top:0px;color:black; opacity:.8;'><b>Department:</b> <%=link_to @professor.department.name, department_professors_path(@professor.department_id) %></h2></td>
@@ -123,7 +168,7 @@ document.write("</select></td></tr>");
 
     <% if admin_signed_in? || instructor_signed_in? %>
         <b>add courses for this professor: </b>
-        <%= form_for [@professor, course.new] do |f| %>
+        <%= form_for [@professor, Course.new] do |f| %>
             <div class="field">
                 <%= f.label :code, "course code"%><br />
                 <%= f.text_field :code %>

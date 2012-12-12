@@ -5,7 +5,7 @@ class DepartmentsController < ApplicationController
   before_filter :editor, :only => [:edit, :update]
 
   def index
-    @departments = Department.find(:all,:order=>'name')
+    @departments = Department.all
 
     respond_to do |format|
       format.html # index.html.erb

@@ -10,7 +10,7 @@
 		<td class="title">Professors</td>
 	   </tr>
 	   <%@flag=0;%>
-
+	   <%@prev_first_char='0'%>
 		<% @professors.each do |professor| %>
 
 	  	    <%if (params[:search]||params[:letter]||params[:department_id])&&@letter!="All" %>
@@ -29,8 +29,13 @@
 				<%next if professor.department!=@department_param%>
 			<%end%>
 	  	    <%end%>
+<!--this is for printing the letter uppon professors first letter change-->
+	   <%if professor.name[0].upcase!=@prev_first_char%>		
+		   <%@prev_first_char=professor.name[0].upcase%>
+		   <tr><td><h2><%=professor.name[0].upcase%></h2></td></tr>
 
-
+	   <%end%>
+<!----------------------->
 	   <tr class="<%=cycle('list_line_odd','list_line_even')%>">
 	     <td class="list_name">
 
@@ -74,13 +79,23 @@
 	   <tr>
 		<td class="title">Professors</td>
 	   <%@flag=0;%>
+	   <%@prev_first_char='0'%>
 	   </tr>
-		<% @department.professors.each do |professor| %>
+		<% @department.professors.sort.each do |professor| %>
+
 	  	    <%if (params[:search]||params[:letter])&&@letter!="All"%>
 
 			<%next if professor.name[0].upcase!=@letter%>
 
 	  	    <%end%>
+<!--this is for printing the letter uppon professors first letter change-->
+	   <%if professor.name[0].upcase!=@prev_first_char%>		
+		   <%@prev_first_char=professor.name[0].upcase%>
+		   <tr><td><h2><%=professor.name[0].upcase%></h2></td></tr>
+
+	   <%end%>
+<!----------------------->
+
 	   <tr class="<%=cycle('list_line_odd','list_line_even')%>">
 	     <td class="list_name">
 
