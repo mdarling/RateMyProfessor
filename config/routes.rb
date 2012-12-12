@@ -14,7 +14,6 @@ RateMyProfessor::Application.routes.draw do
 
   resources :students
 
-  resources :professors, only: [:index]
   resources :departments do
       resources :professors do
           resources :professor_evals
