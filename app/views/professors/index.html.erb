@@ -101,9 +101,15 @@
 	</table>
 
 	<% if admin_signed_in? %>
+          <br /><br />
+          <h3>New Professor</h3>
 	  <%= form_for [@department, Professor.new] do |f| %>
+              <p>
+                <%= f.label "First Name:" %><br />
+                <%= f.text_field :first_name %>
+              </p>
 	      <p>
-	      <%= f.label :name, "New Professor" %><br />
+	      <%= f.label :name, "Last Name:" %><br />
 	      <%= f.text_field :name %>
 	      </p>	
 	      <p><%= f.submit "Add Professor" %></p>
