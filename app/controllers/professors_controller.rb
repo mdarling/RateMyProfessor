@@ -4,9 +4,7 @@ class ProfessorsController < ApplicationController
   before_filter :creator, :only => [:new, :create, :destroy]
   before_filter :editor, :only => [:edit, :update]
 
-
-  def index
-  
+  def index 	
     if(params[:department_id])
       @department = Department.find(params[:department_id])
       @professors = @department.professors.all
