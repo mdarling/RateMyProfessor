@@ -15,14 +15,16 @@
 
   <div class="field">
     <%= f.label :name %><br />
-    <%= f.number_field :name %>
+    <%= f.text_field :name %>
   </div>
 
   <%= f.fields_for :questions do |builder| %>
     <%= render 'question_fields', f: builder %>
   <% end %>
+  <br/>
   <%= link_to_add_fields "Add Question", f, :questions %>
-
+  <br/>
+  <br/>
   <div class="actions">
     <%= f.submit %>
   </div>

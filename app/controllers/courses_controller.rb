@@ -61,7 +61,7 @@ class CoursesController < ApplicationController
 
         respond_to do |format|
             if @course.save
-                format.html { redirect_to department_course_url(@department,@course), notice: 'Course was successfully created.' }
+                format.html { redirect_to professor_url(@professor), notice: 'Course was successfully created.' }
                 format.json { render json: @course, status: :created, location: @course }
             else
                 format.html { render action: "new" }
