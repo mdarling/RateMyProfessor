@@ -1,4 +1,0 @@
-class AddQuestionsToProfessorEval < ActiveRecord::Migration
-  def change
-  end
-end
