@@ -132,7 +132,8 @@ document.write("</select></td></tr>");
             <%= f.radio_button :q4, 4 %> 4
             <%= f.radio_button :q4, 5 %> 5
         </div>                
-                <div class="field">
+        <p><%= f.submit "add evaluation for this professor" %></p>
+            <div class="field">
             <%= f.label :q5, "Q5: My instructor is accessible outside of class" %>
             <%= f.radio_button :q5, 1 %> 1
             <%= f.radio_button :q5, 2 %> 2
@@ -181,7 +182,6 @@ document.write("</select></td></tr>");
             <%= f.radio_button :q10, 5 %> 5
         </div> 
         <p><%= f.submit "add evaluation for this professor" %></p>
-    
     <%end%>
 
     <% if admin_signed_in? || @userid == @pageid %>
