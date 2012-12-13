@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+HELLO
+<p>
+  <b>Q1:</b>
+  <%= @professor_eval.q1 %>
+</p>
+
+<p>
+  <b>Q2:</b>
+  <%= @professor_eval.q2 %>
+</p>
+
+<p>
+  <b>Q3:</b>
+  <%= @professor_eval.q3 %>
+</p>
+
+<p>
+  <b>Q4:</b>
+  <%= @professor_eval.q4 %>
+</p>
+
+<p>
+  <b>Comment:</b>
+  <%= @professor_eval.comment %>
+</p>
+
+
+<%= link_to 'Edit', edit_professor_eval_path(@professor_eval) %> |
+<%= link_to 'Back', professor_path(@professor_eval.professor_id)%>

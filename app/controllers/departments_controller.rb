@@ -1,8 +1,11 @@
 class DepartmentsController < ApplicationController
   # GET /departments
   # GET /departments.json
+  before_filter :creator, :only => [:new, :create, :destroy]
+  before_filter :editor, :only => [:edit, :update]
+
   def index
-    @departments = Department.all
+    @departments = Department.find(:all,:order=>'name')
 
     respond_to do |format|
       format.html # index.html.erb
@@ -14,6 +17,7 @@ class DepartmentsController < ApplicationController
   # GET /departments/1.json
   def show
     @department = Department.find(params[:id])
+    @professors = @department.professors.all
 
     respond_to do |format|
       format.html # show.html.erb
@@ -78,6 +82,20 @@ class DepartmentsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to departments_url }
       format.json { head :no_content }
+    end
+  end
+
+  private
+
+  def creator
+    unless admin_signed_in?
+      redirect_to login_url, alert: 'You need to sign in or sign up before continuing.'
+    end
+  end
+
+  def editor
+    unless admin_signed_in?
+      redirect_to login_url, alert: 'You need to sign in or sign up before continuing.'
     end
   end
 end

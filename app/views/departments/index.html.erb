@@ -1,23 +1,52 @@
-<h1>All departments</h1>
+<%@letter=params[:letter]%>
+<%@search=params[:search]%>
 
-<table>
+<table class="table_dept">
   <tr>
-    <th>Departments</th>
-    <th></th>
-    <th></th>
-    <th></th>
+	<td class="title">Departments</td>
   </tr>
+<%@flag=0;%>
+  <% @departments.each do |department| %>
 
-<% @departments.each do |department| %>
-  <tr>
-    <td><%= link_to department.name, department%></td>
-    <td><%= link_to 'Show', department %></td>
+    <%if (params[:search]||params[:letter])&&@letter!="All"%>
+	<%if @search %>
+		<%next if (!department.name.downcase.index(@search.downcase)&&!department.shortname.downcase.index(@search.downcase))%>
+	<%else%>
+		<%next if department.name[0].upcase!=@letter%>
+	<%end%>
+    <%end%>
+
+  <tr class="<%=cycle('list_line_odd','list_line_even')%>">
+    <td class="list_name">
+
+	<%@flag=1%>
+	<%= link_to department.name, department_professors_path(department)%></td>
+<!--	<%= link_to department.name %></td>-->
+<!--<a href="/professors?department=<%=department.shortname%>"><%=department.name%></a>-->
+
+
+    	<% if admin_signed_in? %>
+
     <td><%= link_to 'Edit', edit_department_path(department) %></td>
     <td><%= link_to 'Destroy', department, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+    	<% end %>
   </tr>
+
 <% end %>
+
+<%if @flag==0%>
+  <tr class="<%=cycle('list_line_odd','list_line_even')%>">
+    <td class="list_name">
+
+	No departments meet the criteria</td>
+
+<%end%>
+<tr>
+
 </table>
 
 <br />
-
-<%= link_to 'New Department', new_department_path %>
+<% if admin_signed_in? %>
+  <%= link_to 'New Department', new_department_path %>
+<% end %>

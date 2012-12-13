@@ -13,3 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+$(function(){  // $(document).ready shorthand
+
+$('#main').hide().fadeIn('slow');
+});

@@ -1,0 +1,9 @@
+<h1>Response Sets</h1>
+
+<% @response_sets.each do |response_set| %>
+  <div class="article">
+    <h2><%= link_to response_set.id, response_set %></h2>
+  </div>
+<% end %>
+
+<p><%= link_to 'New Response Set', new_response_set_path(evaluation_id: 1) %></p>

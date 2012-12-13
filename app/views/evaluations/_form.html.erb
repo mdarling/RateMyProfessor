@@ -1,4 +1,4 @@
-<%= form_for(@evaluation) do |f| %>
+<%= form_for @evaluation do |f| %>
   <% if @evaluation.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@evaluation.errors.count, "error") %> prohibited this evaluation from being saved:</h2>
@@ -11,22 +11,20 @@
     </div>
   <% end %>
 
+  <%= f.hidden_field :course_id, value: @course.id %>
+
   <div class="field">
-    <%= f.label :q1 %><br />
-    <%= f.number_field :q1 %>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
   </div>
-  <div class="field">
-    <%= f.label :q2 %><br />
-    <%= f.number_field :q2 %>
-  </div>
-  <div class="field">
-    <%= f.label :q3 %><br />
-    <%= f.number_field :q3 %>
-  </div>
-  <div class="field">
-    <%= f.label :q4 %><br />
-    <%= f.text_field :q4 %>
-  </div>
+
+  <%= f.fields_for :questions do |builder| %>
+    <%= render 'question_fields', f: builder %>
+  <% end %>
+  <br/>
+  <%= link_to_add_fields "Add Question", f, :questions %>
+  <br/>
+  <br/>
   <div class="actions">
     <%= f.submit %>
   </div>

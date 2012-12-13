@@ -1,42 +1,228 @@
-<p id="notice"><%= notice %></p>
+<!doctype html>
 
-<p>
-  <b>Name:</b>
-  <%= @professor.name %>
-  <b>Department:</b>
-  <%= @professor.department.name%>
-</p>
 
-<b>Courses</b>
+
+
+
+    <table class="prof_name_department">
+        <tr>
+            <td style="opacity:.8;background-color:#ffffff;"><h2 style='font-size:20pt;margin-left:30px;float:left;margin-top:0px;color:black; opacity:1;'><b>Name:</b> <%= "#{@professor.name}, #{@professor.first_name}" %></h2></td>
+        </tr>
+        <tr>	
+            <td style="opacity:1;background-color:#fe4d4d;"><h2 style='font-size:14pt;margin-left:30px;float:left;margin-top:0px;color:black; opacity:.8;'><b>Department:</b> <%=link_to @professor.department.name, department_professors_path(@professor.department_id) %></h2></td>
+        </tr>
+    </table>
+
+    <p id="notice"><%= notice %></p>
+
+    <table class="table_courses">
+        <tr><td style="color:black;font-size:13.5pt;padding-right:30px;padding-left:30px;padding-bottom:10px;padding-top:10px; "><b>Courses</b></td></tr>
+        <tr><td style="font-size:13.5pt;padding-right:30px;padding-left:30px;">
+
+                <!--dual selection box for term/year when showing professor courses-->
+                <!--
+<script type="text/javaScript">
+var d=new Date();
+var month=d.getMonth();
+var year=d.getFullYear();
+var my_year=new Array();
+var i=0;
+
+
+document.write("<select style='width:135px;' class='term' name='term' id='term' >");
+if(month<=11&&month>=5){document.write("<option selected='selected'>Fall</option><option>Spring</option>");}
+else{document.write("<option selected='selected'>Spring</option><option>Fall</option>");}
+document.write("</select></td>")
+
+document.write("<td style='font-size:13.5pt;padding-right:30px;padding-left:30px;allign:right;'><select style='width:135px;' class='year' name='year' id='year'>");
+
+for(var iter=<%=@professor.courses.minimum(:year)%>;iter<=<%=@professor.courses.maximum(:year)%>;iter++)
+{
+
+document.write("<option>"+iter+"</option>");
+}
+document.write("<option selected='selected'>All</option>");
+document.write("</select></td></tr>");
+</script>
+-->
+</table>
+
+
+<table class="table_course_listing">
+<tr><td class="table_course_cells"><b>Code</b></td><td class="table_course_cells"><b>Name</b></td><td class="table_course_cells"><b>Year</b></td><td class="table_course_cells"><b>Term</b></td></tr>
 <div id = "courses">
     <%= render :partial => @professor.courses %>
 </div>
+</table>
 
-<b>Add Courses for this professor: </b>
-<%= form_for [@professor, Course.new], do |f| %>
-     <div class="field">
-    <%= f.label :code,  "Course Code"%><br />
-    <%= f.text_field :code %>
-  </div>
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_area :description , :rows =>6%>
-  </div>
-  <div class="field">
-    <%= f.label :semester %><br />
-    <%= f.text_field :semester %>
-  </div>
-  <div class="field">
-    <%= f.label :year %><br />
-    <%= f.number_field :year %>
-  </div>
-    <p><%= f.submit "Add Course" %></p>
-<%end%>
 
-<%= link_to 'Edit', edit_professor_path(@professor) %> |
-<%= link_to 'Back', department_path(@professor.department_id)%>
 
+    <table class="table_statistics">
+        <tr><td style="color:black;font-size:13.5pt;padding-right:30px;padding-left:30px;padding-bottom:10px;padding-top:10px; "><b>Statistics</b></td></tr>
+        <tr><td style="font-size:13.5pt;padding-right:30px;padding-left:30px;">
+    </table>
+
+    <div id = "statistics">
+        <div class="field", style = "padding-left:70px;">
+            total number of evaluations:
+            <%= ProfessorEval.where("professor_id = ?", @professor.id).count %>
+        </div>
+    </div>
+
+    <% if ProfessorEval.where("professor_id = ? ", @professor.id).count != 0 %>
+    <table class="table_statistic_listing">
+        <tr>
+            <th>Q1</th>
+            <th>Q2</th>
+            <th>Q3</th>
+            <th>Q4</th>
+            <th>Q5</th>
+            <th>Q6</th>
+            <th>Q7</th>
+            <th>Q8</th>
+            <th>Q9</th>
+            <th>Q10</th>
+        </tr>
+
+        <tr>
+            <td><%= "%.2f" %ProfessorEval.where("professor_id = ?", @professor.id).average(:q1) %></td>
+            <td><%= "%.2f" %ProfessorEval.where("professor_id = ?", @professor.id).average(:q2) %></td>
+            <td><%= "%.2f" %ProfessorEval.where("professor_id = ?", @professor.id).average(:q3) %></td>
+            <td><%= "%.2f" %ProfessorEval.where("professor_id = ?", @professor.id).average(:q4) %></td>
+            <td><%= "%.2f" %ProfessorEval.where("professor_id = ?", @professor.id).average(:q5) %></td>
+            <td><%= "%.2f" %ProfessorEval.where("professor_id = ?", @professor.id).average(:q6) %></td>
+            <td><%= "%.2f" %ProfessorEval.where("professor_id = ?", @professor.id).average(:q7) %></td>
+            <td><%= "%.2f" %ProfessorEval.where("professor_id = ?", @professor.id).average(:q8) %></td>
+            <td><%= "%.2f" %ProfessorEval.where("professor_id = ?", @professor.id).average(:q9) %></td>
+            <td><%= "%.2f" %ProfessorEval.where("professor_id = ?", @professor.id).average(:q10) %></td>        
+        </tr>
+    </table>
+    <% end %>
+
+    <br />
+   
+    <b style="font-size:12pt;">Add evaluation for this professor: </b> <br />
+    <%= form_for [@professor, ProfessorEval.new] do |f| %>
+        <div class="field">
+            <%= f.label :q1, "Q1: My instructor communicates ideas and concepts clearly" %>
+            <%= f.radio_button :q1, 1 %> 1
+            <%= f.radio_button :q1, 2 %> 2
+            <%= f.radio_button :q1, 3 %> 3
+            <%= f.radio_button :q1, 4 %> 4
+            <%= f.radio_button :q1, 5 %> 5
+        </div>
+        <div class="field">
+            <%= f.label :q2, "Q2: My instructor demonstrates a thorough grasp of the course material" %>
+            <%= f.radio_button :q2, 1 %> 1
+            <%= f.radio_button :q2, 2 %> 2
+            <%= f.radio_button :q2, 3 %> 3
+            <%= f.radio_button :q2, 4 %> 4
+            <%= f.radio_button :q2, 5 %> 5
+        </div>
+        <div class="field">
+            <%= f.label :q3, "Q3: My instructor explains the material in an interesting manner?" %>
+            <%= f.radio_button :q3, 1 %> 1
+            <%= f.radio_button :q3, 2 %> 2
+            <%= f.radio_button :q3, 3 %> 3
+            <%= f.radio_button :q3, 4 %> 4
+            <%= f.radio_button :q3, 5 %> 5
+        </div>
+        <div class="field">
+            <%= f.label :q4, "Q4: My instructor is well-organized" %>
+            <%= f.radio_button :q4, 1 %> 1
+            <%= f.radio_button :q4, 2 %> 2
+            <%= f.radio_button :q4, 3 %> 3
+            <%= f.radio_button :q4, 4 %> 4
+            <%= f.radio_button :q4, 5 %> 5
+        </div>
+        <div class="field">
+            <%= f.label :q5, "Q5: My instructor is accessible outside of class" %>
+            <%= f.radio_button :q4, 1 %> 1
+            <%= f.radio_button :q4, 2 %> 2
+            <%= f.radio_button :q4, 3 %> 3
+            <%= f.radio_button :q4, 4 %> 4
+            <%= f.radio_button :q4, 5 %> 5
+        </div>
+        <div class="field">
+            <%= f.label :q6, "Q6: My instructor encourages participation in class" %>
+            <%= f.radio_button :q4, 1 %> 1
+            <%= f.radio_button :q4, 2 %> 2
+            <%= f.radio_button :q4, 3 %> 3
+            <%= f.radio_button :q4, 4 %> 4
+            <%= f.radio_button :q4, 5 %> 5
+        </div>
+        <div class="field">
+            <%= f.label :q7, "Q7: The pace of the course is good" %>
+            <%= f.radio_button :q4, 1 %> 1
+            <%= f.radio_button :q4, 2 %> 2
+            <%= f.radio_button :q4, 3 %> 3
+            <%= f.radio_button :q4, 4 %> 4
+            <%= f.radio_button :q4, 5 %> 5
+        </div>
+        <div class="field">
+            <%= f.label :q8, "Q8: My instructor uses good examples in lecture" %>
+            <%= f.radio_button :q4, 1 %> 1
+            <%= f.radio_button :q4, 2 %> 2
+            <%= f.radio_button :q4, 3 %> 3
+            <%= f.radio_button :q4, 4 %> 4
+            <%= f.radio_button :q4, 5 %> 5
+        </div>
+        <div class="field">
+            <%= f.label :q9, "Q9: My instructor notices indications when students need help" %>
+            <%= f.radio_button :q4, 1 %> 1
+            <%= f.radio_button :q4, 2 %> 2
+            <%= f.radio_button :q4, 3 %> 3
+            <%= f.radio_button :q4, 4 %> 4
+            <%= f.radio_button :q4, 5 %> 5
+        </div>
+        <div class="field">
+            <%= f.label :q10, "Q10: The grading in the course was fair" %>
+            <%= f.radio_button :q4, 1 %> 1
+            <%= f.radio_button :q4, 2 %> 2
+            <%= f.radio_button :q4, 3 %> 3
+            <%= f.radio_button :q4, 4 %> 4
+            <%= f.radio_button :q4, 5 %> 5
+        </div> 
+        <p><%= f.submit "add evaluation for this professor" %></p>
+    
+    <%end%>
+
+    <% if admin_signed_in? || instructor_signed_in? %>
+	<br /><br />
+        <h3>Add a course for this professor: </h3>
+        <%= form_for [@professor, Course.new] do |f| %>
+            <div class="field">
+                <%= f.label :code, "course code"%><br />
+                <%= f.text_field :code %>
+            </div>
+            <div class="field">
+                <%= f.label :name %><br />
+                <%= f.text_field :name %>
+            </div>
+            <div class="field">
+                <%= f.label :description %><br />
+                <%= f.text_area :description , :rows =>6%>
+            </div>
+            <div class="field">
+                <%= f.label :semester %><br />
+                <%= f.text_field :semester %>
+            </div>
+            <div class="field">
+                <%= f.label :year %><br />
+                <%= f.number_field :year %>
+            </div>
+            <p><%= f.submit "add course" %></p>
+        <%end%>
+
+
+        <%= link_to 'edit', edit_professor_path(@professor) %> |
+    <%end%>
+    <br \>
+    <% if admin_signed_in? %>
+      <%= link_to 'Create account for this professor',
+        new_instructor_registration_path(professor_id: @professor) %> |
+      <br \>
+    <% end %>
+    <%= link_to 'back', :back%>
+    <br \>
+    <br \>

@@ -1,0 +1,32 @@
+<%= form_for @response_set do |f| %>
+  <% if @response_set.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@response_set.errors.count, "error") %> prohibited this response set from being saved:</h2>
+
+      <ul>
+      <% @response_set.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= f.hidden_field :evaluation_id, value: @evaluation.id %>
+
+  <% @response_set.responses.each_with_index do |response, index| %>
+    <%= f.fields_for "response#{index}", response do |builder| %>
+      Question: <%= @questions[index].content %>
+      <br>
+      <%= builder.hidden_field :question_id, value: @questions[index].id %>
+      <% @questions[index].answers.each do |answer| %>
+        <%= builder.radio_button :answer_id, answer.id %><%= answer.content %>
+        <br>
+      <% end %>
+      <br>
+    <% end %>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,65 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Q1:</b>
+  <%= @professor_eval.q1 %>
+</p>
+
+<p>
+  <b>Q2:</b>
+  <%= @professor_eval.q2 %>
+</p>
+
+<p>
+  <b>Q3:</b>
+  <%= @professor_eval.q3 %>
+</p>
+
+<p>
+  <b>Q4:</b>
+  <%= @professor_e<h1>New professor_eval</h1>
+
+<%= render 'form' %>
+
+<%= link_to 'Back', professor_evals_path %>
+val.q4 %>
+</p>
+
+<p>
+  <b>Q5:</b>
+  <%= @professor_eval.q5 %>
+</p>
+
+<p>
+  <b>Q6:</b>
+  <%= @professor_eval.q6 %>
+</p>
+
+<p>
+  <b>Q7:</b>
+  <%= @professor_eval.q7 %>
+</p>
+
+<p>
+  <b>Q8:</b>
+  <%= @professor_eval.q8 %>
+</p>
+
+<p>
+  <b>Q9:</b>
+  <%= @professor_eval.q9 %>
+</p>
+
+<p>
+  <b>Q10:</b>
+  <%= @professor_eval.q10 %>
+</p>
+
+<p>
+  <b>Comment:</b>
+  <%= @professor_eval.comment %>
+</p>
+
+
+<%= link_to 'Edit', edit_professor_eval_path(@professor_eval) %> |
+<%= link_to 'Back', professor_path(@professor_eval.professor_id)%>

@@ -1,5 +1,8 @@
-<p id="notice"><%= notice %></p>
+<% if notice %>
+  <div id="notice"><%= notice %></div><br/>
+<% end %>
 <h1>Course information</h1>
+<br/>
 <p>
   <b>Code:</b>
   <%= @course.code %>
@@ -25,58 +28,16 @@
   <%= @course.year %>
 </p>
 
-<b>Statistics</b>
-<div id = "statistics">
-    <div class="field">
-    Total number of evaluations:
-    <%= Evaluation.where("course_id = ?", @course.id).count %>  
-  </div>
-</div>
+<b><%= link_to "view Detail",course_evaluations_path(@course.id) %></b><br/>
 
-<table>
-  <tr>
-    <th>Q1</th>
-    <th>Q2</th>
-    <th>Q3</th>
-    <th>Q4</th>  
-  </tr>
-
-<tr>
-    <td><%= "%.3f " %Evaluation.where("course_id = ?", @course.id).average(:q1)  %></td>
-    <td><%= "%.3f " %Evaluation.where("course_id = ?", @course.id).average(:q2)  %></td>
-    <td><%= "%.3f " %Evaluation.where("course_id = ?", @course.id).average(:q3) %></td>
-    <td><%= "%.3f " %Evaluation.where("course_id = ?", @course.id).average(:q4) %></td>
-  </tr>
-</table>
-
-<b><%= link_to "view Detail",course_evaluations_path(@course.id) %></b></br>
-
-<!--<b>Evaluations</b>
+<b>Evaluations</b>
 <div id = "evaluations">
     <%= render :partial => @course.evaluations %>
-</div>-->
+</div>
 
+<p><%= link_to 'New Evaluation', new_professor_course_evaluation_path(@course.professor,@course) %></p>
 
-<b>Add evaluation for this Course: </b>
-<%= form_for [@course, Evaluation.new], do |f| %>
- <div class="field">
-    <%= f.label :q1 %><br />
-    <%= f.number_field :q1 %>
-  </div>
-  <div class="field">
-    <%= f.label :q2 %><br />
-    <%= f.number_field :q2 %>
-  </div>
-  <div class="field">
-    <%= f.label :q3 %><br />
-    <%= f.number_field :q3 %>
-  </div>
-  <div class="field">
-    <%= f.label :q4 %><br />
-    <%= f.text_field :q4 %>
-  </div>
-   <p><%= f.submit "Add Evaluation" %></p>
- <%end%>
-
-<%= link_to 'Edit', edit_course_path(@course) %> |
+<% if admin_signed_in? or instructor_signed_in? %>
+<%= link_to 'Edit', edit_professor_course_path(@course.professor,@course) %> |
+<% end %>
 <%= link_to 'Back', professor_path(@course.professor_id)%>
