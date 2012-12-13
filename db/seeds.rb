@@ -384,6 +384,35 @@ responses = [
   ]
 
 
+admins = [
+    {email: 'admin@unm.edu',
+     password: 'secret',
+     password_confirmation: 'secret'
+    }
+]
+
+
+instructors = [
+    {email: 'heileman@unm.edu',
+     password: 'secret',
+     password_confirmation: 'secret',
+     professor: 'Heileman',
+    }
+]
+
+
+users = [
+    {email: 'louie@unm.edu',
+     password: 'golobos',
+     password_confirmation: 'golobos'
+    },
+    {email: 'lucy@unm.edu',
+     password: 'golobos',
+     password_confirmation: 'golobos'
+    }
+]
+
+
 # Populate the departments table, saving a reference to each department created
 # so that it can be referred to later.
 Department.delete_all
@@ -480,4 +509,25 @@ responses.each do |response|
 end
 
 
+# Add an admin user to use in demo
+Admin.delete_all
+admins.each do |admin|
+  Admin.create(admin)
+end
 
+
+# Add instructor to use in demo
+Instructor.delete_all
+instructors.each do |instructor|
+  professor = professor_refs[instructor[:professor]]
+  instructor.delete :professor
+  @account = Instructor.create(instructor)
+  @account.professor = professor
+end
+
+
+# Add student users to use in demo
+User.delete_all
+users.each do |user|
+  User.create(user)
+end

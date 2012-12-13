@@ -5,8 +5,7 @@ class InstructorController < Devise::RegistrationsController
     @professor = Professor.find_by_id(@id)
     resource_params.delete(:professor_id)
     build_resource
-    @professor.instructor = resource
-    @professor.save
+    resource.professor = @professor
     if resource.save
       if resource.active_for_authentication?
         flash[:notice] = 'Successfully added instructor.' if is_navigational_format?
