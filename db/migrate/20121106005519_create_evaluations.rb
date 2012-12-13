@@ -5,7 +5,7 @@ class CreateEvaluations < ActiveRecord::Migration
       t.integer :q2
       t.integer :q3
       t.string :q4
-
+	  t.integer :q5
       t.timestamps
     end
   end
