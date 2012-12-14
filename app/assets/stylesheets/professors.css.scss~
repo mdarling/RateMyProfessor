@@ -10,51 +10,6 @@
   }
 
 
-  .even{padding:10px;background-color:#b7b7bd;border-radius:5px;}
-  .odd{padding:10px;background-color:#ad9f9f;border-radius:5px;}
-  .title{
-    padding: 10px;
-    font-family: arial;
-    font-size: 20pt;
-    font-weight: bold;
-  }
-
-//Styles for the search button
-.button {
-
-	background:white;
-	background:-moz-linear-gradient(top,#E60000 0%,#919191 100%);
-	background:-webkit-gradient(linear,left top,left bottom,color-stop(0%,#E60000),color-stop(100%,#919191));
-	background:-webkit-linear-gradient(top,#E60000 0%,#919191 100%);
-	background:-o-linear-gradient(top,#E60000 0%,#919191 100%);
-	background:-ms-linear-gradient(top,#E60000 0%,#919191 100%);
-	background:linear-gradient(top,#E60000 0%,#919191 100%);
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#E60000',endColorstr='#919191',GradientType=0);
-	padding:3.5px 13px;
-	margin-bottom:9px;
-	color:#fff;
-	font-family:'arial';
-	font-size:20px;
-	border-radius:4px;
-	-moz-border-radius:4px;
-	-webkit-border-radius:4px;
-	
-	border:0px;
-}
-.button:hover{
-	padding:1.5px 11px;
-	background:-moz-linear-gradient(top,#E60000 50%,#919191 100%);
-	background:-webkit-gradient(linear,left top,left bottom,color-stop(0%,#E60000),color-stop(100%,#919191));
-	background:-webkit-linear-gradient(top,#E60000 0%,#919191 100%);
-	background:-o-linear-gradient(top,#E60000 0%,#919191 100%);
-	background:-ms-linear-gradient(top,#E60000 0%,#919191 100%);
-	background:linear-gradient(top,#E60000 0%,#919191 100%);
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#E60000',endColorstr='#919191',GradientType=0);
-	border:2px solid;
-	border-color:black;
-
-}
-
 
   .title{
     padding: 10px;
